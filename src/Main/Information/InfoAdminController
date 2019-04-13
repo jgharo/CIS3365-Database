@@ -1,5 +1,3 @@
-package Information;
-
 import java.sql.*;
 
 public class InformationAdminController {

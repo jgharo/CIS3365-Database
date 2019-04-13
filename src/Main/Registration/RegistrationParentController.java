@@ -1,8 +1,6 @@
-package Payments;
-
 import java.sql.*;
 
-public class TransactionsController {
+public class RegistrationParentController {
     Connection conn=null;
     Statement stmt=null;
 

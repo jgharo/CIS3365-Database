@@ -1,8 +1,6 @@
-package Registration;
-
 import java.sql.*;
 
-public class RegistrationParentController {
+public class TransactionsController {
     Connection conn=null;
     Statement stmt=null;
 
