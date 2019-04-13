@@ -7,50 +7,57 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.InformationAdminController">
+<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.InformationAdminController">
    <children>
-      <Text layoutX="189.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator Information" underline="true">
+      <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator Information" underline="true">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="179.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
+      <Text layoutX="56.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="180.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
+      <Text layoutX="57.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="160.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="92.87939453125">
+      <Text layoutX="305.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="155.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:">
+      <Text layoutX="596.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="194.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+      <Text layoutX="357.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="208.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <TextField layoutX="263.0" layoutY="84.0" />
-      <TextField layoutX="263.0" layoutY="122.0" />
-      <TextField layoutX="263.0" layoutY="160.0" />
-      <TextField layoutX="263.0" layoutY="198.0" />
-      <TextField layoutX="263.0" layoutY="270.0" />
-      <TextField layoutX="263.0" layoutY="232.0" />
-      <Button layoutX="280.0" layoutY="323.0" mnemonicParsing="false" text="Save" />
+      <TextField fx:id="firstText" layoutX="140.0" layoutY="504.0" />
+      <TextField fx:id="lastText" layoutX="140.0" layoutY="542.0" />
+      <TextField fx:id="phoneText" layoutX="413.0" layoutY="504.0" />
+      <TextField fx:id="emailText" layoutX="412.0" layoutY="542.0" />
+      <TextField fx:id="addressText" layoutX="665.0" layoutY="504.0" />
+      <Button layoutX="619.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Add" />
+      <Button layoutX="687.0" layoutY="542.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="762.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+      <TableView layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
+        <columns>
+          <TableColumn prefWidth="59.0" text="ID" />
+          <TableColumn prefWidth="119.0" text="First Name" />
+            <TableColumn prefWidth="107.0" text="Last Name" />
+            <TableColumn prefWidth="118.0" text="DOB" />
+            <TableColumn prefWidth="181.0" text="Phone" />
+            <TableColumn prefWidth="178.0" text="Email" />
+            <TableColumn prefWidth="196.0" text="Address" />
+        </columns>
+      </TableView>
+      <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" text="Main Menu" />
    </children>
 </AnchorPane>

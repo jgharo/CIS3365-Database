@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,24 +11,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="863.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.UserManageController">
+<AnchorPane prefHeight="936.0" prefWidth="1613.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.UserManageController">
    <children>
-      <Text layoutX="623.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" underline="true">
+      <Text layoutX="746.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" underline="true">
          <font>
             <Font size="29.0" />
          </font>
       </Text>
-      <TableView layoutX="65.0" layoutY="92.0" prefHeight="625.0" prefWidth="1234.0">
-        <columns>
-          <TableColumn prefWidth="202.0" text="Student ID" />
-          <TableColumn prefWidth="360.0" text="First" />
-            <TableColumn prefWidth="379.0" text="Last" />
-            <TableColumn prefWidth="292.0" text="Phone" />
-        </columns>
+      <TableView layoutX="70.0" layoutY="107.0" prefHeight="667.0" prefWidth="1498.0">
+         <columns>
+            <TableColumn fx:id="col_stu_id" prefWidth="49.0" text="Stu_ID" />
+            <TableColumn fx:id="col_par_id" prefWidth="61.0" text="Par_ID" />
+            <TableColumn fx:id="col_class_id" prefWidth="65.0" text="Class_ID" />
+            <TableColumn fx:id="col_course_id" prefWidth="71.0" text="Course_ID" />
+            <TableColumn fx:id="col_stu_fname" prefWidth="117.0" text="Stu_FName" />
+            <TableColumn fx:id="col_stu_lname" prefWidth="103.0" text="Stu_LName" />
+            <TableColumn fx:id="col_stu_dob" prefWidth="117.0" text="Stu_DOB" />
+            <TableColumn fx:id="col_stu_email" prefWidth="121.0" text="Stu_Email" />
+            <TableColumn fx:id="col_stu_phone" prefWidth="147.0" text="Stu_Phone" />
+            <TableColumn fx:id="col_stu_address" prefWidth="289.0" text="Stu_Address" />
+            <TableColumn fx:id="col_stu_lang" prefWidth="115.0" text="Stu_Lang" />
+            <TableColumn fx:id="col_stu_abs" prefWidth="111.0" text="Stu_Abs" />
+            <TableColumn fx:id="col_date_mod" prefWidth="161.0" text="Date_Mod" />
+         </columns>
       </TableView>
-      <Button layoutX="707.0" layoutY="750.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete" />
-      <Button layoutX="546.0" layoutY="750.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Modify" />
-      <Button layoutX="388.0" layoutY="750.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Add" />
+      <Button layoutX="974.0" layoutY="816.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete" />
+      <Button layoutX="813.0" layoutY="816.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Modify" />
+      <Button layoutX="655.0" layoutY="816.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Add" />
    </children>
 </AnchorPane>
