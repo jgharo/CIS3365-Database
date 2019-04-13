@@ -25,7 +25,7 @@ public class LoginScreenController
         if (usernameField.getText().equals("Admin") && passwordField.getText().equals("Password"))
         {
             LoginStatus.setText("Login Success");
-            Parent root = FXMLLoader.load(getClass().getResource("adminLogin.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("registrationSelecton.fxml"));
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setTitle("Info Screen");
             primaryStage.setScene(new Scene(root));
