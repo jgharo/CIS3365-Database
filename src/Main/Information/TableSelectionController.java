@@ -1,22 +1,40 @@
 package Information;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TableSelectionController implements Initializable
 {
-    @FXML
-    ChoiceBox<String> tableSelectionBox;
+    @FXML ComboBox<String> tableSelectionBox;
 
     public void initialize(URL url, ResourceBundle rb)
     {
-        tableSelectionBox.setValue("Please Select a Table...");
+        tableSelectionBox.getItems().addAll( "Master Admins", "Master Admin Account", "Admin",
+                "Admin Account", "Admin Registration", "Attendance Check", "Attendance Record", "Classes",
+                "Class Language", "Classroom", "Courses", "Master Admins", "Master Admin Account", "Parents",
+                "Parent Registration", "Parent Transactions", "Sacraments", "Students", "Student Registration",
+                "Student Transactions", "Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
+                "Parent Transaction History", "Student Transaction History", "Student Verification",
+                "Teacher Verification", "Admin Verification");
+    }
 
-        tableSelectionBox.getItems().add("Admin");
-        tableSelectionBox.getItems().add("Admin Accounts");
+    public void backButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("Login Screen.fxml"));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.setTitle("Login Screen");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }
