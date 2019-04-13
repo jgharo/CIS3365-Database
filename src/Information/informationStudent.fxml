@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.InformationStudentController">
+   <children>
+      <ChoiceBox layoutX="251.0" layoutY="307.0" prefWidth="150.0" />
+      <Text layoutX="170.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="252.0" layoutY="273.0" />
+      <Text layoutX="197.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="252.0" layoutY="235.0" />
+      <Text layoutX="183.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="252.0" layoutY="201.0" />
+      <Text layoutX="144.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="252.0" layoutY="163.0" />
+      <Text layoutX="149.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="92.87939453125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="252.0" layoutY="125.0" />
+      <Text layoutX="169.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="252.0" layoutY="87.0" />
+      <Text layoutX="168.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="204.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Information" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="272.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Save" />
+   </children>
+</AnchorPane>

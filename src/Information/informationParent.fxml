@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="774.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.InformationParentController">
+   <children>
+      <Button layoutX="354.0" layoutY="700.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Save" />
+      <Text layoutX="128.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mother" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="137.0" layoutY="102.0" />
+      <Text layoutX="54.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="137.0" layoutY="140.0" />
+      <Text layoutX="34.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="92.87939453125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="137.0" layoutY="178.0" />
+      <Text layoutX="29.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="137.0" layoutY="216.0" />
+      <Text layoutX="68.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="137.0" layoutY="250.0" />
+      <Text layoutX="82.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="137.0" layoutY="288.0" />
+      <Text layoutX="56.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <ChoiceBox layoutX="137.0" layoutY="322.0" prefWidth="150.0" />
+      <Text layoutX="311.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parent Information" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="526.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Father" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="464.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="548.0" layoutY="107.0" />
+      <Text layoutX="465.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="547.0" layoutY="141.0" />
+      <Text layoutX="451.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="92.87939453125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="548.0" layoutY="177.0" />
+      <Text layoutX="435.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="548.0" layoutY="215.0" />
+      <Text layoutX="484.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="548.0" layoutY="249.0" />
+      <Text layoutX="501.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="548.0" layoutY="287.0" />
+      <Text layoutX="474.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <ChoiceBox layoutX="548.0" layoutY="321.0" prefWidth="150.0" />
+      <Text layoutX="127.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Martial Status:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <ChoiceBox layoutX="230.0" layoutY="361.0" prefWidth="150.0" />
+      <Text layoutX="418.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Students:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="489.0" layoutY="361.0" />
+      <TableView layoutX="56.0" layoutY="451.0" prefHeight="222.0" prefWidth="273.0">
+        <columns>
+          <TableColumn prefWidth="140.0" text="First" />
+          <TableColumn prefWidth="132.0" text="Last" />
+        </columns>
+      </TableView>
+      <Text layoutX="435.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="519.0" layoutY="448.0" />
+      <Text layoutX="436.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="519.0" layoutY="486.0" />
+      <Text layoutX="416.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="92.87939453125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="519.0" layoutY="524.0" />
+      <Text layoutX="411.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="519.0" layoutY="562.0" />
+      <Text layoutX="450.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="519.0" layoutY="596.0" />
+      <Text layoutX="464.0" layoutY="651.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField layoutX="519.0" layoutY="634.0" />
+      <Text layoutX="437.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <ChoiceBox layoutX="518.0" layoutY="668.0" prefWidth="150.0" />
+      <Text layoutX="354.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

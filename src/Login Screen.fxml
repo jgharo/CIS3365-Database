@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginScreenController">
+    <children>
+        <ToolBar prefHeight="40.0" prefWidth="412.0">
+            <items>
+                <Button mnemonicParsing="false" text="Back" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="266.0" text="    St. Philip of Jesus">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Menu">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                </MenuButton>
+            </items>
+        </ToolBar>
+        <TextField layoutX="121.0" layoutY="84.0" promptText="Username" />
+        <TextField layoutX="121.0" layoutY="140.0" promptText="Password" />
+        <Button layoutX="121.0" layoutY="186.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Log In" />
+        <Hyperlink layoutX="249.0" layoutY="226.0" text="Register!" />
+        <Label layoutX="93.0" layoutY="230.0" text="Don't Have an account?" />
+    </children>
+</AnchorPane>

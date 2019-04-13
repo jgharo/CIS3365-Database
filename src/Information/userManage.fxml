@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="863.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.UserManageController">
+   <children>
+      <Text layoutX="623.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" underline="true">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <TableView layoutX="65.0" layoutY="92.0" prefHeight="625.0" prefWidth="1234.0">
+        <columns>
+          <TableColumn prefWidth="202.0" text="Student ID" />
+          <TableColumn prefWidth="360.0" text="First" />
+            <TableColumn prefWidth="379.0" text="Last" />
+            <TableColumn prefWidth="292.0" text="Phone" />
+        </columns>
+      </TableView>
+      <Button layoutX="707.0" layoutY="750.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Delete" />
+      <Button layoutX="546.0" layoutY="750.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Modify" />
+      <Button layoutX="388.0" layoutY="750.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Add" />
+   </children>
+</AnchorPane>
