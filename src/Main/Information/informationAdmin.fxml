@@ -44,20 +44,20 @@
       <TextField fx:id="phoneText" layoutX="413.0" layoutY="504.0" />
       <TextField fx:id="emailText" layoutX="412.0" layoutY="542.0" />
       <TextField fx:id="addressText" layoutX="665.0" layoutY="504.0" />
-      <Button layoutX="619.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Add" />
-      <Button layoutX="687.0" layoutY="542.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="762.0" layoutY="542.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Delete" />
-      <TableView layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
+      <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#addAdmin" prefHeight="25.0" prefWidth="55.0" text="Add" />
+      <Button fx:id="updateButton" layoutX="687.0" layoutY="542.0" mnemonicParsing="false" onAction="#updateAdmin" text="Update" />
+      <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteAdmin" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+      <TableView fx:id="adminTable" layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
         <columns>
-          <TableColumn prefWidth="59.0" text="ID" />
-          <TableColumn prefWidth="119.0" text="First Name" />
-            <TableColumn prefWidth="107.0" text="Last Name" />
-            <TableColumn prefWidth="118.0" text="DOB" />
-            <TableColumn prefWidth="181.0" text="Phone" />
-            <TableColumn prefWidth="178.0" text="Email" />
-            <TableColumn prefWidth="196.0" text="Address" />
+          <TableColumn fx:id="idCol" prefWidth="59.0" text="ID" />
+          <TableColumn fx:id="firstCol" prefWidth="119.0" text="First Name" />
+            <TableColumn fx:id="lastCol" prefWidth="107.0" text="Last Name" />
+            <TableColumn fx:id="phoneCol" prefWidth="181.0" text="Phone" />
+            <TableColumn fx:id="emailCol" prefWidth="178.0" text="Email" />
+            <TableColumn fx:id="addressColl" prefWidth="196.0" text="Address" />
+            <TableColumn fx:id="dateCol" prefWidth="118.0" text="Date Modified" />
         </columns>
       </TableView>
-      <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" text="Main Menu" />
+      <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#menu" text="Main Menu" />
    </children>
 </AnchorPane>
