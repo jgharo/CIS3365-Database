@@ -35,7 +35,8 @@
         <TextField layoutX="214.0" layoutY="172.0" promptText="Home Adress" />
         <TextField layoutX="29.0" layoutY="217.0" promptText="Phone (***) ***-****" />
         <TextField layoutX="29.0" layoutY="127.0" prefHeight="26.0" prefWidth="354.0" promptText="E-mail Address" />
-        <ComboBox layoutX="214.0" layoutY="217.0" prefHeight="26.0" prefWidth="170.0" promptText="Language" />
+        <ComboBox layoutX="214.0" layoutY="217.0" prefHeight="26.0" prefWidth="170.0" promptText="Language" >
+                <items></items>
         <ComboBox layoutX="214.0" layoutY="259.0" prefHeight="26.0" prefWidth="170.0" promptText="I am Registering..." />
         <ComboBox layoutX="29.0" layoutY="259.0" prefHeight="26.0" prefWidth="170.0" promptText="Marital Status" />
       <TextField layoutX="206.0" layoutY="350.0" promptText="First Name" />
