@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.repo_mccormick_1_controller">
+    <children>
+        <HBox layoutX="60.0" prefHeight="720.0" prefWidth="1213.0">
+            <children>
+                <TableView fx:id="table" prefHeight="720.0" prefWidth="1213.0">
+                    <columns>
+                        <TableColumn fx:id="col_par_id" prefWidth="51.0" text="Par_ID" />
+                        <TableColumn fx:id="col_preg_id" prefWidth="57.0" text="PReg_ID" />
+                        <TableColumn fx:id="col_fath_fname" prefWidth="111.0" text="Fath_FName" />
+                        <TableColumn fx:id="col_fath_lname" prefWidth="131.0" text="Fath_LName" />
+                        <TableColumn fx:id="col_moth_fname" prefWidth="103.0" text="Moth_FName" />
+                        <TableColumn fx:id="col_moth_lname" prefWidth="145.0" text="Moth_LName" />
+                        <TableColumn fx:id="col_stu_id" prefWidth="61.0" text="Stu_ID" />
+                        <TableColumn fx:id="col_stu_fname" prefWidth="101.0" text="Stu_FName" />
+                        <TableColumn fx:id="col_stu_lname" prefWidth="135.0" text="Stu_LName" />
+                        <TableColumn fx:id="col_trans_remain" prefWidth="98.0" text="Trans_Remain" />
+                        <TableColumn fx:id="col_due_date" prefWidth="97.0" text="Due_Date" />
+                        <TableColumn fx:id="col_par_marital" prefWidth="132.0" text="Par_Marital" />
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <VBox prefHeight="720.0" prefWidth="56.0">
+            <children>
+                <Button mnemonicParsing="false" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
