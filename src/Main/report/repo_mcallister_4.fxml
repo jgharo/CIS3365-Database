@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.repo_mcallister_4_controller">
+    <children>
+        <HBox layoutX="60.0" prefHeight="720.0" prefWidth="1213.0">
+            <children>
+                <TableView fx:id="table" prefHeight="720.0" prefWidth="1213.0">
+                    <columns>
+                        <TableColumn fx:id="col_stu_id" prefWidth="120.0" text="Stu_ID" />
+                        <TableColumn fx:id="col_sreg_id" prefWidth="145.0" text="SReg_ID" />
+                        <TableColumn fx:id="col_trans_stu_id" minWidth="0.0" prefWidth="143.0" text="Trans_Stu_ID" />
+                        <TableColumn fx:id="col_trans_amt" prefWidth="269.0" text="Trans_Amt" />
+                        <TableColumn fx:id="col_trans_date" prefWidth="535.0" text="Trans_Date" />
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <VBox prefHeight="720.0" prefWidth="56.0">
+            <children>
+                <Button mnemonicParsing="false" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
