@@ -1,5 +1,6 @@
 package Information;
 
+import Information.Admin.Admin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,13 +48,7 @@ public class UserManageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Connection conn=null;
-        Statement stmt=null;
-        String connectionURL=
-                "jdbc:sqlserver://localhost:1433;"
-                        +"database=test_2;"
-                        +"user=anson;"
-                        +"password=password;";
+
         ObservableList<informationStudent> studentInfo = FXCollections.observableArrayList();
 
         try {
@@ -72,7 +67,7 @@ public class UserManageController implements Initializable {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger( InformationAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger( Admin.class.getName()).log(Level.SEVERE, null, ex);
 
         }
 
