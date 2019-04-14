@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.repo_deluna_2_controller">
+    <children>
+        <HBox layoutX="60.0" prefHeight="720.0" prefWidth="1213.0">
+            <children>
+                <TableView fx:id="table" prefHeight="720.0" prefWidth="1213.0">
+                    <columns>
+                        <TableColumn fx:id="col_stu_id" prefWidth="94.0" text="Stu_ID" />
+                        <TableColumn fx:id="col_stu_fname" prefWidth="399.0" text="Stu_FName" />
+                        <TableColumn fx:id="col_stu_lname" minWidth="0.0" prefWidth="409.0" text="Stu_LName" />
+                        <TableColumn fx:id="col_stu_verify" prefWidth="173.0" text="Stu_Verify" />
+                        <TableColumn fx:id="col_trans_remain" prefWidth="137.0" text="Trans_Remain" />
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <VBox prefHeight="720.0" prefWidth="56.0">
+            <children>
+                <Button mnemonicParsing="false" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

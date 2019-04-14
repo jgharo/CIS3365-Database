@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.repo_vu_1_controller">
+    <children>
+        <HBox layoutX="60.0" prefHeight="720.0" prefWidth="1213.0">
+            <children>
+                <TableView fx:id="table" prefHeight="720.0" prefWidth="1213.0">
+                    <columns>
+                        <TableColumn fx:id="col_class_id" prefWidth="86.0" text="Class_ID" />
+                        <TableColumn fx:id="col_class_name" prefWidth="444.0" text="Class_Name" />
+                        <TableColumn fx:id="col_class_lang" minWidth="0.0" prefWidth="157.0" text="Class_Lang" />
+                        <TableColumn fx:id="col_class_room" prefWidth="232.0" text="Class_Room" />
+                        <TableColumn fx:id="col_course_name" prefWidth="293.0" text="Course_Name" />
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <VBox prefHeight="720.0" prefWidth="56.0">
+            <children>
+                <Button mnemonicParsing="false" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
