@@ -48,15 +48,15 @@
       <Button fx:id="updateButton" layoutX="687.0" layoutY="542.0" mnemonicParsing="false" onAction="#updateAdmin" text="Update" />
       <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteAdmin" prefHeight="25.0" prefWidth="56.0" text="Delete" />
       <TableView fx:id="adminTable" layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
-        <columns>
-          <TableColumn fx:id="idCol" prefWidth="59.0" text="ID" />
-          <TableColumn fx:id="firstCol" prefWidth="119.0" text="First Name" />
+         <columns>
+            <TableColumn fx:id="idCol" prefWidth="59.0" text="ID" />
+            <TableColumn fx:id="firstCol" prefWidth="119.0" text="First Name" />
             <TableColumn fx:id="lastCol" prefWidth="107.0" text="Last Name" />
             <TableColumn fx:id="phoneCol" prefWidth="181.0" text="Phone" />
             <TableColumn fx:id="emailCol" prefWidth="178.0" text="Email" />
             <TableColumn fx:id="addressColl" prefWidth="196.0" text="Address" />
             <TableColumn fx:id="dateCol" prefWidth="118.0" text="Date Modified" />
-        </columns>
+         </columns>
       </TableView>
       <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#menu" text="Main Menu" />
    </children>

@@ -49,7 +49,7 @@ public class InformationAdminController  implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<AdminInfo> adminInfo = FXCollections.observableArrayList();
 
-         try {
+        try {
 
             Connection con = DBconnect.getConnection();
 
@@ -86,17 +86,17 @@ public class InformationAdminController  implements Initializable {
             CallableStatement stmtAdmin = con.prepareCall("{CALL admin_insert()}");
             ResultSet rs = stmtAdmin.executeQuery();
             while (rs.next()) {
-            stmtAdmin.setString(1,this.firstText.getText());
-            stmtAdmin.setString(2,this.lastText.getText());
-            stmtAdmin.setString(3,this.phoneText.getText());
-            stmtAdmin.setString(4,this.emailText.getText());
-            stmtAdmin.setString(5,this.addressText.getText());
+                stmtAdmin.setString(1,this.firstText.getText());
+                stmtAdmin.setString(2,this.lastText.getText());
+                stmtAdmin.setString(3,this.phoneText.getText());
+                stmtAdmin.setString(4,this.emailText.getText());
+                stmtAdmin.setString(5,this.addressText.getText());
 
-            stmtAdmin.execute();
-            con.close();
-        }
+                stmtAdmin.execute();
+                con.close();
+            }
 
-    } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(AdminInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -145,8 +145,8 @@ public class InformationAdminController  implements Initializable {
     }
 
     public void menu(ActionEvent actionEvent) {
-            var stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        var stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
 
         stage.setScene(returnScene);
-        }
     }
+}
