@@ -64,8 +64,8 @@ public class informationAdminController implements Initializable {
 
             ResultSet rs = stmtAdmin.executeQuery();
             while (rs.next()) {
-                adminInfo.add(new InformationAdmin(rs.getString("MAdm_ID"), rs.getString("Adm_FName"), rs.getString("Adm_LName"), rs.getString("Adm_DOB"),
-                        rs.getString("Adm_Phone"), rs.getString("Adm_Address"), rs.getString("Adm_Email")));
+                adminInfo.add(new InformationAdmin(rs.getString("Adm_ID"), rs.getString("Adm_FName"), rs.getString("Adm_LName"), rs.getString("Adm_Email"),
+                        rs.getString("Adm_Phone"), rs.getString("Adm_Address"),rs.getString("Date_Mod") ));
 
 
             }
@@ -121,12 +121,12 @@ public class informationAdminController implements Initializable {
 
             CallableStatement stmtadm= conn.prepareCall("{CALL UpdateAdmin(?,?,?,?,?,?)}");
 
-            stmtadm.setString(1, "First Name");
-            stmtadm.setString(2, "Last Name");
-            stmtadm.setString(3, "1324 Address Street");
-            stmtadm.setString(4, "admin@admin.com");
-            stmtadm.setString(5,"123-456-789");
-            stmtadm.setInt(6,4 );
+            stmtadm.setString(1,this.firstText.getText());
+            stmtadm.setString(2,this.lastText.getText());
+            stmtadm.setString(3,this.phoneText.getText());
+            stmtadm.setString(4,this.emailText.getText());
+            stmtadm.setString(5,this.addressText.getText());
+           
 
             stmtadm.executeUpdate();
             System.out.println("updated admin");
