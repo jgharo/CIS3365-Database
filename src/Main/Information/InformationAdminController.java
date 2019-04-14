@@ -150,4 +150,3 @@ public class InformationAdminController  implements Initializable {
         stage.setScene(returnScene);
         }
     }
-}
