@@ -1,6 +1,6 @@
 package Information;
 
-public class AdminInfo {
+public class InformationAdmin {
     String Adm_ID;
     String Adm_FName;
     String Adm_LName;
@@ -9,7 +9,7 @@ public class AdminInfo {
     String Adm_Email;
     String Date_Mod;
 
-    public AdminInfo(String adm_ID, String adm_FName, String adm_LName, String adm_Phone, String adm_Address, String adm_Email, String date_Mod) {
+    public InformationAdmin(String adm_ID, String adm_FName, String adm_LName, String adm_Phone, String adm_Address, String adm_Email, String date_Mod) {
         this.Adm_ID = adm_ID;
         this.Adm_FName = adm_FName;
         this.Adm_LName = adm_LName;

@@ -1,9 +1,9 @@
 package Information;
 
-public class Student {
+public class informationStudent {
     String Stu_ID, Par_ID, Class_ID, Course_ID,Stu_FName, Stu_LName, Stu_DOB, Stu_Email, Stu_Phone, Stu_Address, Stu_Lang, Stu_Abs,Date_Mod;
 
-    public Student (String Stu_ID, String Par_ID, String Class_ID, String Course_ID, String Stu_FName, String Stu_LName, String Stu_DOB, String Stu_Email, String Stu_Phone, String Stu_Address, String Stu_Lang, String Stu_Abs, String Date_Mod ){
+    public informationStudent(String Stu_ID, String Par_ID, String Class_ID, String Course_ID, String Stu_FName, String Stu_LName, String Stu_DOB, String Stu_Email, String Stu_Phone, String Stu_Address, String Stu_Lang, String Stu_Abs, String Date_Mod ){
         this.Stu_ID= Stu_ID;
         this.Par_ID= Par_ID;
         this.Class_ID=Class_ID;

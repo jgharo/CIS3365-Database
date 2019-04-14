@@ -1,8 +1,8 @@
 package Information;
 
-public class Parent {
+public class informationParent {
     String  Par_ID, Fath_FName, Fath_LName, Fath_DOB, Fath_Email, Fath_Phone, Fath_Address, Fath_Lang, Moth_FName, Moth_LName, Moth_DOB, Moth_Email, Moth_Phone, Moth_Address, Moth_Lang, Par_Marital, Amt_Stu, Date_Mod;
-    public Parent(String par_ID, String fath_FName, String fath_LName, String fath_DOB, String fath_Email, String fath_Phone, String fath_Address, String fath_Lang, String moth_FName, String moth_LName, String moth_DOB, String moth_Email, String moth_Phone, String moth_Address, String moth_Lang, String par_Marital, String amt_Stu, String date_Mod) {
+    public informationParent(String par_ID, String fath_FName, String fath_LName, String fath_DOB, String fath_Email, String fath_Phone, String fath_Address, String fath_Lang, String moth_FName, String moth_LName, String moth_DOB, String moth_Email, String moth_Phone, String moth_Address, String moth_Lang, String par_Marital, String amt_Stu, String date_Mod) {
         Par_ID = par_ID;
         Fath_FName = fath_FName;
         Fath_LName = fath_LName;

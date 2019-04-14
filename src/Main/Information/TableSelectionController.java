@@ -23,9 +23,9 @@ public class TableSelectionController implements Initializable
         tableSelectionBox.getItems().addAll( "Master Admins", "Master Admin Account", "Admin",
                 "Admin Account", "Admin Registration", "Attendance Check", "Attendance Record", "Classes",
                 "Class Language", "Classroom", "Courses", "Master Admins", "Master Admin Account", "Parents",
-                "Parent Registration", "Parent Transactions", "Sacraments", "Students", "Student Registration",
-                "Student Transactions", "Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
-                "Parent Transaction History", "Student Transaction History", "Student Verification",
+                "informationParent Registration", "informationParent Transactions", "Sacraments", "Students", "informationStudent Registration",
+                "informationStudent Transactions", "Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
+                "informationParent Transaction History", "informationStudent Transaction History", "informationStudent Verification",
                 "Teacher Verification", "Admin Verification");
     }
 

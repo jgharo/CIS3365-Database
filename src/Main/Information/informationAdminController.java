@@ -19,17 +19,17 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class InformationAdminController  implements Initializable {
+public class informationAdminController implements Initializable {
 
     @FXML
-    public TableView <AdminInfo> adminTable;
-    public TableColumn <AdminInfo, String> idCol;
-    public TableColumn <AdminInfo, String> firstCol;
-    public TableColumn <AdminInfo, String> lastCol;
-    public TableColumn <AdminInfo, String>phoneCol;
-    public TableColumn <AdminInfo, String> emailCol;
-    public TableColumn <AdminInfo, String> addressColl;
-    public TableColumn <AdminInfo, String> dateCol;
+    public TableView <InformationAdmin> adminTable;
+    public TableColumn <InformationAdmin, String> idCol;
+    public TableColumn <InformationAdmin, String> firstCol;
+    public TableColumn <InformationAdmin, String> lastCol;
+    public TableColumn <InformationAdmin, String>phoneCol;
+    public TableColumn <InformationAdmin, String> emailCol;
+    public TableColumn <InformationAdmin, String> addressColl;
+    public TableColumn <InformationAdmin, String> dateCol;
 
     @FXML
     public TextField firstText;
@@ -47,7 +47,14 @@ public class InformationAdminController  implements Initializable {
     Scene returnScene;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<AdminInfo> adminInfo = FXCollections.observableArrayList();
+        Connection conn=null;
+        Statement stmt=null;
+        String connectionURL=
+                "jdbc:sqlserver://localhost:1433;"
+                        +"database=test_2;"
+                        +"user=anson;"
+                        +"password=password;";
+        ObservableList<InformationAdmin> adminInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,14 +64,14 @@ public class InformationAdminController  implements Initializable {
 
             ResultSet rs = stmtAdmin.executeQuery();
             while (rs.next()) {
-                adminInfo.add(new AdminInfo(rs.getString("MAdm_ID"), rs.getString("Adm_FName"), rs.getString("Adm_LName"), rs.getString("Adm_DOB"),
+                adminInfo.add(new InformationAdmin(rs.getString("MAdm_ID"), rs.getString("Adm_FName"), rs.getString("Adm_LName"), rs.getString("Adm_DOB"),
                         rs.getString("Adm_Phone"), rs.getString("Adm_Address"), rs.getString("Adm_Email")));
 
 
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminInfo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger( InformationAdmin.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         idCol.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
@@ -97,28 +104,39 @@ public class InformationAdminController  implements Initializable {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminInfo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger( InformationAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void updateAdmin(ActionEvent actionEvent) {
-        try{
-            Connection con = DBconnect.getConnection();
-            CallableStatement stmtAdmin = con.prepareCall("{CALL personal_admin_update()}");
-            ResultSet rs = stmtAdmin.executeQuery();
-            while (rs.next()) {
-                stmtAdmin.setString(1,this.firstText.getText());
-                stmtAdmin.setString(2,this.lastText.getText());
-                stmtAdmin.setString(3,this.phoneText.getText());
-                stmtAdmin.setString(4,this.emailText.getText());
-                stmtAdmin.setString(5,this.addressText.getText());
+        Connection conn=null;
+        Statement stmt=null;
+        String connectionURL=
+                "jdbc:sqlserver://localhost:1433;"
+                        +"database=test_2;"
+                        +"user=anson;"
+                        +"password=password;";
+        try {
+             conn = DriverManager.getConnection( connectionURL );
 
-                stmtAdmin.execute();
-                con.close();
-            }
+            CallableStatement stmtadm= conn.prepareCall("{CALL UpdateAdmin(?,?,?,?,?,?)}");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminInfo.class.getName()).log(Level.SEVERE, null, ex);
+            stmtadm.setString(1, "First Name");
+            stmtadm.setString(2, "Last Name");
+            stmtadm.setString(3, "1324 Address Street");
+            stmtadm.setString(4, "admin@admin.com");
+            stmtadm.setString(5,"123-456-789");
+            stmtadm.setInt(6,4 );
+
+            stmtadm.executeUpdate();
+            System.out.println("updated admin");
+            stmtadm.close();
+
+
+        }
+        catch (SQLException e){
+            System.out.println("unable to make connection with db");
+            e.printStackTrace();
         }
     }
 
@@ -140,7 +158,7 @@ public class InformationAdminController  implements Initializable {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminInfo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger( InformationAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

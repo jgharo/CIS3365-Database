@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="341.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Registration.RegistrationSelectionController">
    <children>
       <Button fx:id="studentButton" layoutX="136.0" layoutY="261.0" mnemonicParsing="false" onAction="#studentButtonPushed" prefHeight="34.0" prefWidth="151.0" text="Student(18+)" />
-      <Button fx:id="parentButton" layoutX="136.0" layoutY="201.0" mnemonicParsing="false" onAction="#parentButtonPushed" prefHeight="34.0" prefWidth="151.0" text="Information.Parent" />
+      <Button fx:id="parentButton" layoutX="136.0" layoutY="201.0" mnemonicParsing="false" onAction="#parentButtonPushed" prefHeight="34.0" prefWidth="151.0" text="Information.informationParent" />
       <Button fx:id="teacherButton" layoutX="136.0" layoutY="138.0" mnemonicParsing="false" onAction="#teacherButtonPushed" prefHeight="34.0" prefWidth="151.0" text="Teacher" />
       <Button fx:id="adminButton" layoutX="136.0" layoutY="75.0" mnemonicParsing="false" onAction="#adminButtonPushed" prefHeight="34.0" prefWidth="151.0" text="Admin" />
       <ToolBar layoutY="1.0" prefHeight="40.0" prefWidth="422.0">
