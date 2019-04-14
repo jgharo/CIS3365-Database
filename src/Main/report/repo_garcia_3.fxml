@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1441.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.repo_garcia_3_controller">
+    <children>
+        <HBox layoutX="60.0" prefHeight="720.0" prefWidth="1382.0">
+            <children>
+                <TableView fx:id="table" prefHeight="720.0" prefWidth="1699.0">
+                    <columns>
+                        <TableColumn fx:id="col_course_name" prefWidth="104.0" text="Course_Name" />
+                        <TableColumn fx:id="col_stu_id" prefWidth="58.0" text="Stu_ID" />
+                        <TableColumn fx:id="col_stu_fname" prefWidth="130.0" text="Stu_FName" />
+                        <TableColumn fx:id="col_stu_lname" minWidth="0.0" prefWidth="156.0" text="Stu_LName" />
+                        <TableColumn fx:id="col_stu_phone" prefWidth="147.0" text="Stu_Phone" />
+                        <TableColumn fx:id="col_fath_fname" prefWidth="145.0" text="Fath_FName" />
+                        <TableColumn fx:id="col_fath_lname" minWidth="0.0" prefWidth="182.0" text="Fath_LName" />
+                        <TableColumn fx:id="col_moth_fname" prefWidth="167.0" text="Moth_FName" />
+                        <TableColumn fx:id="col_moth_lname" minWidth="0.0" prefWidth="167.0" text="Moth_LName" />
+                  <TableColumn fx:id="col_class_name" minWidth="0.0" prefWidth="124.0" text="Class_Name" />
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <VBox prefHeight="720.0" prefWidth="56.0">
+            <children>
+                <Button mnemonicParsing="false" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
