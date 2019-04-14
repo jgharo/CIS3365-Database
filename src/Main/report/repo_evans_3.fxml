@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.repo_evans_3_controller">
+    <children>
+        <HBox layoutX="60.0" prefHeight="720.0" prefWidth="1588.0">
+            <children>
+                <TableView fx:id="table" prefHeight="720.0" prefWidth="1604.0">
+                    <columns>
+                        <TableColumn fx:id="col_stu_id" prefWidth="46.0" text="Stu_ID" />
+                        <TableColumn fx:id="col_stu_fname" prefWidth="90.0" text="Stu_FName" />
+                        <TableColumn fx:id="col_stu_lname" minWidth="0.0" prefWidth="98.0" text="Stu_LName" />
+                        <TableColumn fx:id="col_stu_email" prefWidth="99.0" text="Stu_Email" />
+                        <TableColumn fx:id="col_stu_address" prefWidth="122.0" text="Stu_Address" />
+                        <TableColumn fx:id="col_fath_fname" prefWidth="105.0" text="Fath_FName" />
+                        <TableColumn fx:id="col_fath_lname" minWidth="0.0" prefWidth="126.0" text="Fath_LName" />
+                  <TableColumn fx:id="col_fath_phone" prefWidth="87.0" text="Fath_Phone" />
+                  <TableColumn fx:id="col_fath_email" prefWidth="116.0" text="Fath_Email" />
+                  <TableColumn fx:id="col_moth_fname" prefWidth="111.0" text="Moth_FName" />
+                  <TableColumn fx:id="col_moth_lname" prefWidth="120.0" text="Moth_LName" />
+                  <TableColumn fx:id="col_moth_phone" prefWidth="116.0" text="Moth_Phone" />
+                  <TableColumn fx:id="col_moth_email" prefWidth="105.0" text="Moth_Email" />
+                  <TableColumn fx:id="col_class_name" minWidth="0.0" prefWidth="111.0" text="Class_Name" />
+                  <TableColumn fx:id="col_class_room" minWidth="0.0" prefWidth="111.0" text="Class_Room" />
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <VBox prefHeight="720.0" prefWidth="56.0">
+            <children>
+                <Button mnemonicParsing="false" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
