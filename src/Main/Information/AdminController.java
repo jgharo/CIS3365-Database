@@ -102,7 +102,6 @@ public class AdminController implements Initializable {
 
         }
         adminTable.setItems(adminInfo);
-
     }
 
     public void addAdmin(ActionEvent actionEvent) throws SQLException {
@@ -125,6 +124,7 @@ public class AdminController implements Initializable {
 
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
         } finally {
             firstText.setText("");
             lastText.setText("");
@@ -155,6 +155,7 @@ public class AdminController implements Initializable {
 
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
         } finally {
             id.setText("");
             firstText.setText("");
@@ -180,6 +181,7 @@ public class AdminController implements Initializable {
 
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
         } finally {
             firstText.setText("");
             lastText.setText("");
