@@ -55,7 +55,7 @@ public class TeacherRegistrationFormController implements Initializable {
             }
 
         } catch (SQLException ex){
-            Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         col_treg_id.setCellValueFactory(new PropertyValueFactory<>("TReg_ID"));
@@ -81,7 +81,7 @@ public class TeacherRegistrationFormController implements Initializable {
 
         }
         catch (SQLException ex){
-            Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -125,7 +125,7 @@ public class TeacherRegistrationFormController implements Initializable {
 
         }
         catch (SQLException ex){
-            Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
