@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.AttendanceRecordController">
+<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.AttendanceRecordController">
     <children>
         <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance Record" underline="true">
             <font>
@@ -33,9 +33,9 @@
         <TextField fx:id="attendanceIDText" layoutX="140.0" layoutY="504.0" />
         <TextField fx:id="classText" layoutX="378.0" layoutY="504.0" />
         <TextField fx:id="dateText" layoutX="665.0" layoutY="504.0" />
-        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#addAttendance" prefHeight="25.0" prefWidth="55.0" text="Add" />
-        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#updateAttendance" text="Update" />
-        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteAttendance" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <Button fx:id="addButton" layoutX="329.0" layoutY="555.0" mnemonicParsing="false" onAction="#addAttendance" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="413.0" layoutY="555.0" mnemonicParsing="false" onAction="#updateAttendance" text="Update" />
+        <Button fx:id="deleteButton" layoutX="499.0" layoutY="555.0" mnemonicParsing="false" onAction="#deleteAttendance" prefHeight="25.0" prefWidth="56.0" text="Delete" />
         <TableView fx:id="attendanceTable" layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
             <columns>
                 <TableColumn fx:id="attendCol" prefWidth="284.0" text="Attendance ID" />
@@ -44,5 +44,6 @@
             </columns>
         </TableView>
         <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+      <Button fx:id="clearButton" layoutX="580.0" layoutY="555.0" mnemonicParsing="false" onAction="#clearAttendance" prefHeight="25.0" prefWidth="56.0" text="Clear" />
     </children>
 </AnchorPane>

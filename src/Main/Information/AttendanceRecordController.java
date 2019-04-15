@@ -28,7 +28,6 @@ import java.util.logging.Logger;
 
 public class AttendanceRecordController implements Initializable {
     @FXML
-    public Button menuButton;
     public Button addButton;
     public Button updateButton;
     public Button deleteButton;
@@ -91,24 +90,92 @@ public class AttendanceRecordController implements Initializable {
     private void setAttendanceTable() {
         attendCol.setCellValueFactory(new PropertyValueFactory<>("Att_ID"));
         classCol.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("Att_date"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("Att_Date"));
     }
 
     public void addAttendance(ActionEvent actionEvent) {
 
+        try {
+            Connection con = DBconnect.getConnection();
+
+            CallableStatement stmt = con.prepareCall("{CALL attendance_record_insert(?,?)}");
+
+            stmt.setString(1, classText.getText());
+            stmt.setString(2, dateText.getText());
+
+            stmt.execute();
+            setAttendanceTable();
+            displayDatabase();
+            attendanceTable.getSelectionModel().clearSelection();
+            attendanceTable.refresh();
+            con.close();
+
+        } catch (SQLException ex){
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            classText.setText("");
+            dateText.setText("");
+        }
     }
 
     public void deleteAttendance(ActionEvent actionEvent) {
+
+        try {
+            Connection con = DBconnect.getConnection();
+
+            CallableStatement stmt = con.prepareCall("{CALL attendance_record_delete(?)}");
+
+            stmt.setString(1, attendanceIDText.getText());
+
+            stmt.execute();
+            setAttendanceTable();
+            displayDatabase();
+            con.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            classText.setText("");
+        }
 
     }
 
     public void updateAttendance(ActionEvent actionEvent) {
 
+        try {
+            Connection con = DBconnect.getConnection();
+
+            CallableStatement stmt = con.prepareCall("{CALL attendance_record_update(?,?,?)}");
+
+            stmt.setString(1, attendanceIDText.getText());
+            stmt.setString(2, classText.getText());
+            stmt.setString(3, dateText.getText());
+
+            stmt.executeUpdate();
+            setAttendanceTable();
+            displayDatabase();
+            attendanceTable.getSelectionModel().clearSelection();
+            attendanceTable.refresh();
+            con.close();
+
+        }
+        catch (SQLException ex){
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            attendanceIDText.setText("");
+            classText.setText("");
+            dateText.setText("");
+        }
+
     }
 
-
-    public void mainmenu(ActionEvent actionEvent) {
-
+    public void clearAttendance (ActionEvent actionEvent) {
+       attendanceIDText.setText("");
+        classText.setText("");
+        dateText.setText("");
     }
 
     @SuppressWarnings("Duplicates")
