@@ -67,6 +67,7 @@ public class repo_deluna_3_controller implements Initializable {
         col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
         col_stu_fname.setCellValueFactory(new PropertyValueFactory<>("Stu_FName"));
         col_stu_lname.setCellValueFactory(new PropertyValueFactory<>("Stu_LName"));
+        col_class_name.setCellValueFactory(new PropertyValueFactory<>("Class_Name"));
         col_class_room.setCellValueFactory(new PropertyValueFactory<>("Class_Room"));
         col_class_lang.setCellValueFactory(new PropertyValueFactory<>("Class_Lang"));
 
