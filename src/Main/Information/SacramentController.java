@@ -107,7 +107,7 @@ public class SacramentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL student_update(?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL sacrament_update(?,?)}");
 
             stmt.setString(1, this.sac_id.getText());
             stmt.setString(2, this.sac_type.getText());
