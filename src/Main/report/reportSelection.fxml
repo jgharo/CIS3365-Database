@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="341.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.ReportSelectionController">
+<AnchorPane prefHeight="341.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="report.ReportSelectionController">
     <children>
         <ToolBar layoutY="1.0" prefHeight="40.0" prefWidth="422.0">
             <items>

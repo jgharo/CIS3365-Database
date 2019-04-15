@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -23,7 +20,7 @@
         </HBox>
         <VBox prefHeight="720.0" prefWidth="56.0">
             <children>
-                <Button mnemonicParsing="false" text="Back" />
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
             </children>
         </VBox>
     </children>
