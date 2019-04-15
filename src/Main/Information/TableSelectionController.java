@@ -30,8 +30,6 @@ public class TableSelectionController implements Initializable
             "Parent Transaction History", "Student Transaction History", "Student Verification",
             "Teacher Verification", "Admin Verification"};
 
-    //private String[] fxml = new String[]{
-
     public void initialize(URL url, ResourceBundle rb)
     {
         tableSelectionBox.getItems().addAll(tables);

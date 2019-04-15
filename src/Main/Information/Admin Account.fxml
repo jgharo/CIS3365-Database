@@ -40,7 +40,7 @@
             <TableColumn fx:id="col_adm_pass" prefWidth="110.0" text="Adm_Pass" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="825.0" layoutY="492.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
         <Text layoutX="61.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm_User:">
             <font>
                 <Font size="15.0" />

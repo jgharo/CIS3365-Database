@@ -36,7 +36,7 @@
                 <TableColumn fx:id="col_trans_date" prefWidth="136.0" text="Trans_Date" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
         <TextField fx:id="trans_date" layoutX="119.0" layoutY="567.0" prefHeight="25.0" prefWidth="132.0" />
         <Text layoutX="31.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trans_Date:">
             <font>

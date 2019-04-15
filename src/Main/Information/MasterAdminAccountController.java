@@ -4,11 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -137,4 +144,13 @@ public class MasterAdminAccountController implements Initializable {
 
     }
 
+    @SuppressWarnings("Duplicates")
+    public void backButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("tableSelection.fxml"));
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        primaryStage.setTitle("Table Selection");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 }

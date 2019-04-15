@@ -37,7 +37,7 @@
             <TableColumn fx:id="col_course_name" prefWidth="142.0" text="Course_Name" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#menu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
       <TextField fx:id="course_name" layoutX="140.0" layoutY="555.0" />
       <Text layoutX="34.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course_Name:">
          <font>

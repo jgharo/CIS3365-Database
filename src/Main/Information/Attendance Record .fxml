@@ -43,6 +43,6 @@
                 <TableColumn fx:id="dateCol" prefWidth="341.0" text="Attendance Date" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
     </children>
 </AnchorPane>

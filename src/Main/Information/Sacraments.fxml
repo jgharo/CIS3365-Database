@@ -35,6 +35,6 @@
                 <TableColumn fx:id="col_sac_type" prefWidth="208.0" text="Sac_Type" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
     </children>
 </AnchorPane>

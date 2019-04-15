@@ -37,7 +37,7 @@
                 <TableColumn fx:id="col_teach_verify" prefWidth="136.0" text="Teach_Verify" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
         <TextField fx:id="teach_verify" layoutX="140.0" layoutY="567.0" />
         <Text layoutX="48.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teach_Verify:">
             <font>

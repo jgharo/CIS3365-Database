@@ -39,7 +39,7 @@
                 <TableColumn fx:id="col_areg_date" prefWidth="242.0" text="AReg_Date" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="818.0" layoutY="481.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
         <Text layoutX="61.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AReg_Date:">
             <font>
                 <Font size="15.0" />

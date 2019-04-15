@@ -43,6 +43,6 @@
                 <TableColumn fx:id="col_class_lang" prefWidth="129.0" text="Class_Lang" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
     </children>
 </AnchorPane>

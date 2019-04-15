@@ -43,7 +43,7 @@
             <TableColumn fx:id="col_class_name" prefWidth="199.0" text="Class Name" />
             </columns>
         </TableView>
-        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
       <Text fx:id="classID1" layoutX="56.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class Name:">
          <font>
             <Font size="15.0" />
