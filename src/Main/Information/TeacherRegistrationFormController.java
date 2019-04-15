@@ -72,7 +72,7 @@ public class TeacherRegistrationFormController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL teacher_reg_insert(?)}");
+            CallableStatement stmt = con.prepareCall("{CALL teacher_reg_insert(?,?)}");
 
             stmt.setString(1, this.teach_id.getText());
             stmt.setString(2, this.treg_date.getText());
@@ -113,7 +113,7 @@ public class TeacherRegistrationFormController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL teacher_reg_update(?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL teacher_reg_update(?,?,?)}");
 
             stmt.setString(1, this.treg_id.getText());
             stmt.setString(2, this.teach_id.getText());
