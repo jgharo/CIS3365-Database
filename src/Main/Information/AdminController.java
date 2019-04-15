@@ -156,6 +156,7 @@ public class AdminController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+            id.setText("");
             firstText.setText("");
             lastText.setText("");
             phoneText.setText("");
