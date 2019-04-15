@@ -74,8 +74,8 @@ public class AdminController implements Initializable {
         idCol.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
         firstCol.setCellValueFactory(new PropertyValueFactory<>("Adm_FName"));
         lastCol.setCellValueFactory(new PropertyValueFactory<>("Adm_LName"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<>("Adm_Phone"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("Adm_Email"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("Adm_Phone"));
         addressColl.setCellValueFactory(new PropertyValueFactory<>("Adm_Address"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("Date_Mod"));
     }
@@ -92,7 +92,7 @@ public class AdminController implements Initializable {
             ResultSet rs = stmtAdmin.executeQuery();
             while (rs.next()) {
                 adminInfo.add(new Admin(rs.getString("adm_ID"), rs.getString("adm_FName"), rs.getString("adm_LName"),
-                        rs.getString("adm_Phone"), rs.getString("adm_Email"), rs.getString("adm_Address"), rs.getString("date_Mod")));
+                        rs.getString("adm_Email"), rs.getString("adm_Phone"), rs.getString("adm_Address"), rs.getString("date_Mod")));
 
 
             }
@@ -141,9 +141,9 @@ public class AdminController implements Initializable {
 
             stmtAdmin.setString(1, firstText.getText());
             stmtAdmin.setString(2, lastText.getText());
-            stmtAdmin.setString(3, emailText.getText());
-            stmtAdmin.setString(4, phoneText.getText());
-            stmtAdmin.setString(5, addressText.getText());
+            stmtAdmin.setString(3, addressText.getText());
+            stmtAdmin.setString(4, emailText.getText());
+            stmtAdmin.setString(5, phoneText.getText());
             stmtAdmin.setString(6, id.getText());
 
             stmtAdmin.executeUpdate();
