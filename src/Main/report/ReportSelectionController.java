@@ -73,7 +73,7 @@ public class ReportSelectionController implements Initializable
 
     public void backButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("Information/tableSelection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Information/tableSelection.fxml"));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setTitle("Table Selection");
         primaryStage.setScene(new Scene(root));

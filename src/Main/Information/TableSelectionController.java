@@ -67,7 +67,7 @@ public class TableSelectionController implements Initializable
 
     public void backButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("Login Screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Login Screen.fxml"));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setTitle("Login Screen");
         primaryStage.setScene(new Scene(root));
