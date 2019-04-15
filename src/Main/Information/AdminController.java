@@ -108,7 +108,7 @@ public class AdminController implements Initializable {
     public void addAdmin(ActionEvent actionEvent) throws SQLException {
         try{
             Connection con = DBconnect.getConnection();
-            PreparedStatement stmtAdmin = con.prepareCall("{CALL admin_insert(?,?,?,?,?)}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL admin_insert(?,?,?,?,?)}");
 
                 stmtAdmin.setString(1, firstText.getText());
                 stmtAdmin.setString(2, lastText.getText());
@@ -137,7 +137,7 @@ public class AdminController implements Initializable {
     public void updateAdmin(ActionEvent actionEvent) {
         try{
             Connection con = DBconnect.getConnection();
-            PreparedStatement stmtAdmin = con.prepareStatement("{CALL admin_update(?,?,?,?,?,?)}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL admin_update(?,?,?,?,?,?)}");
 
             stmtAdmin.setString(1, firstText.getText());
             stmtAdmin.setString(2, lastText.getText());
@@ -168,7 +168,7 @@ public class AdminController implements Initializable {
     public void deleteAdmin(ActionEvent actionEvent) {
         try{
             Connection con = DBconnect.getConnection();
-            PreparedStatement stmtAdmin = con.prepareStatement("{CALL admin_delete(?)}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL admin_delete(?)}");
 
             stmtAdmin.setString(1, id.getText());
 
