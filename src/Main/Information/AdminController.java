@@ -57,9 +57,9 @@ public class AdminController implements Initializable {
                 id.setText(admin.getAdm_ID());
                 firstText.setText(admin.getAdm_FName());
                 lastText.setText(admin.getAdm_LName());
-                emailText.setText(admin.getAdm_Address());
+                addressText.setText(admin.getAdm_Address());
                 phoneText.setText(admin.getAdm_Phone());
-                addressText.setText(admin.getAdm_Email());
+                emailText.setText(admin.getAdm_Email());
                 adminTable.refresh();
             }
         });
@@ -109,12 +109,12 @@ public class AdminController implements Initializable {
         try{
             Connection con = DBconnect.getConnection();
             CallableStatement stmtAdmin = con.prepareCall("{CALL admin_insert(?,?,?,?,?)}");
-
+                Admin admin = adminTable.getSelectionModel().getSelectedItem();
                 stmtAdmin.setString(1, firstText.getText());
                 stmtAdmin.setString(2, lastText.getText());
-                stmtAdmin.setString(3, emailText.getText());
+                stmtAdmin.setString(3, addressText.getText());
                 stmtAdmin.setString(4, phoneText.getText());
-                stmtAdmin.setString(5, addressText.getText());
+                stmtAdmin.setString(5, emailText.getText());
 
                 stmtAdmin.execute();
                 setAdminTable();
