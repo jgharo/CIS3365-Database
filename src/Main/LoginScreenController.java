@@ -37,13 +37,4 @@ public class LoginScreenController
             LoginStatus.setText("Login Failed");
         }
     }
-
-    public void registerButtonPushed(ActionEvent event) throws IOException
-    {
-        Parent root = FXMLLoader.load(getClass().getResource("registrationSelection.fxml"));
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        primaryStage.setTitle("Registration");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
 }

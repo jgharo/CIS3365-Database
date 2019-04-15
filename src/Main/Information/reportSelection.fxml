@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="341.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.ReportSelectionController">
+    <children>
+        <ToolBar layoutY="1.0" prefHeight="40.0" prefWidth="422.0">
+            <items>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+                <Label alignment="CENTER" prefHeight="20.0" prefWidth="319.0" text="St. Philip of Jesus">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </items>
+        </ToolBar>
+        <ComboBox fx:id="reportSelectionBox" layoutX="127.0" layoutY="83.0" prefHeight="25.0" prefWidth="169.0" promptText="Please Select a Report..." />
+        <Button fx:id="submitButton" layoutX="184.0" layoutY="158.0" mnemonicParsing="false" onAction="#submitButtonPushed" text="Submit" />
+    </children>
+</AnchorPane>
