@@ -1,13 +1,15 @@
 package Information;
 
-public class Admin_Account {
-    String Adm_Acc_ID, Adm_ID, Adm_User, Adm_Pass;
+public class AdminAccount {
 
-    public Admin_Account(String adm_Acc_ID, String adm_ID, String adm_User, String adm_Pass) {
-        Adm_Acc_ID = adm_Acc_ID;
-        Adm_ID = adm_ID;
-        Adm_User = adm_User;
-        Adm_Pass = adm_Pass;
+    String Adm_Acc_ID,Adm_ID, Adm_User, Adm_Pass;
+
+    public AdminAccount(String Adm_Acc_ID, String Adm_ID, String Adm_User, String Adm_Pass){
+        this.Adm_Acc_ID=Adm_Acc_ID;
+        this.Adm_ID=Adm_ID;
+        this.Adm_User=Adm_User;
+        this.Adm_Pass=Adm_Pass;
+
     }
 
     public String getAdm_Acc_ID() {

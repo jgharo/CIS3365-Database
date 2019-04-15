@@ -14,34 +14,41 @@
                 <Font size="20.0" />
             </font>
         </Text>
-        <Text layoutX="56.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+        <Text layoutX="51.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm_Acc_ID:">
             <font>
                 <Font size="15.0" />
             </font>
         </Text>
-        <Text layoutX="314.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+        <Text layoutX="314.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm_ID:">
             <font>
                 <Font size="15.0" />
             </font>
         </Text>
-        <Text layoutX="596.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Text>
-        <TextField fx:id="idText" layoutX="140.0" layoutY="504.0" />
-        <TextField fx:id="usernameText" layoutX="413.0" layoutY="504.0" />
-        <TextField fx:id="passwordText" layoutX="665.0" layoutY="504.0" />
-        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#addAdminAccount" prefHeight="25.0" prefWidth="55.0" text="Add" />
-        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#updateAdminAccount" text="Update" />
-        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteAdminAccount" prefHeight="25.0" prefWidth="56.0" text="Delete" />
-        <TableView layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
+        <TextField fx:id="adm_acc_id" layoutX="140.0" layoutY="504.0" />
+        <TextField fx:id="adm_id" layoutX="413.0" layoutY="504.0" />
+        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_AdminAccount" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_AdminAccount" text="Update" />
+        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_AdminAccount" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <TableView fx:id="table" layoutX="278.0" layoutY="69.0" prefHeight="396.0" prefWidth="454.0">
             <columns>
-                <TableColumn prefWidth="59.0" text="ID" />
-                <TableColumn prefWidth="153.0" text="Username" />
-                <TableColumn prefWidth="177.0" text="Password" />
+                <TableColumn fx:id="col_adm_acc_id" prefWidth="102.0" text="Adm_Acc_ID" />
+                <TableColumn fx:id="col_adm_id" prefWidth="131.0" text="Adm_ID" />
+                <TableColumn fx:id="col_adm_user" prefWidth="110.0" text="Adm_User" />
+            <TableColumn fx:id="col_adm_pass" prefWidth="110.0" text="Adm_Pass" />
             </columns>
         </TableView>
         <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <TextField fx:id="adm_user" layoutX="140.0" layoutY="567.0" />
+        <Text layoutX="61.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm_User:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+      <TextField fx:id="adm_pass" layoutX="405.0" layoutY="567.0" />
+      <Text layoutX="314.0" layoutY="584.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm_Pass:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
