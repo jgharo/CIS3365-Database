@@ -29,18 +29,18 @@
                 <Font size="15.0" />
             </font>
         </Text>
-        <TextField fx:id="classIDText" layoutX="140.0" layoutY="504.0" />
-        <TextField fx:id="usernameText" layoutX="413.0" layoutY="504.0" />
-        <TextField fx:id="passwordText" layoutX="665.0" layoutY="504.0" />
-        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#addClass" prefHeight="25.0" prefWidth="55.0" text="Add" />
-        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#updateClass" text="Update" />
-        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteClass" prefHeight="25.0" prefWidth="56.0" text="Delete" />
-        <TableView layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
+        <TextField fx:id="class_id" layoutX="140.0" layoutY="504.0" />
+        <TextField fx:id="teach_id" layoutX="413.0" layoutY="504.0" />
+        <TextField fx:id="course_id" layoutX="665.0" layoutY="504.0" />
+        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_Class" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_Class" text="Update" />
+        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_Class" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <TableView fx:id="table" layoutX="144.0" layoutY="80.0" prefHeight="396.0" prefWidth="512.0">
             <columns>
-                <TableColumn prefWidth="59.0" text="Class ID" />
-                <TableColumn prefWidth="118.0" text="Teacher ID" />
-                <TableColumn prefWidth="135.0" text="Course ID" />
-            <TableColumn prefWidth="199.0" text="Class Name" />
+                <TableColumn fx:id="col_class_id" prefWidth="59.0" text="Class ID" />
+                <TableColumn fx:id="col_teach_id" prefWidth="118.0" text="Teacher ID" />
+                <TableColumn fx:id="col_course_id" prefWidth="135.0" text="Course ID" />
+            <TableColumn fx:id="col_class_name" prefWidth="199.0" text="Class Name" />
             </columns>
         </TableView>
         <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
@@ -49,6 +49,6 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="classIDText1" layoutX="140.0" layoutY="542.0" />
+      <TextField fx:id="class_name" layoutX="140.0" layoutY="542.0" />
     </children>
 </AnchorPane>

@@ -3,11 +3,11 @@ package Information;
 public class Class {
     String Class_ID, Teach_ID, Course_ID, Class_Name;
 
-    public Class(String class_ID, String teach_ID, String course_ID, String class_Name) {
-        Class_ID = class_ID;
-        Teach_ID = teach_ID;
-        Course_ID = course_ID;
-        Class_Name = class_Name;
+    public Class(String Class_ID, String Teach_ID, String Course_ID, String Class_Name) {
+        this.Class_ID = Class_ID;
+        this.Teach_ID = Teach_ID;
+        this.Course_ID = Course_ID;
+        this.Class_Name = Class_Name;
     }
 
     public String getClass_ID() {
