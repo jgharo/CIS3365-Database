@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="624.0" prefWidth="1373.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.StudentController">
+    <children>
+        <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" underline="true">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="classID" layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="14.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Par_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="9.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="stu_id" layoutX="72.0" layoutY="74.0" />
+        <TextField fx:id="par_id" layoutX="72.0" layoutY="117.0" />
+        <TextField fx:id="course_id" layoutX="77.0" layoutY="190.0" />
+        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_Student" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_Student" text="Update" />
+        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_Student" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <TableView fx:id="table" layoutX="236.0" layoutY="68.0" prefHeight="396.0" prefWidth="1119.0">
+            <columns>
+                <TableColumn fx:id="col_stu_id" prefWidth="59.0" text="Stu_ID" />
+                <TableColumn fx:id="col_par_id" prefWidth="71.0" text="Par_ID" />
+                <TableColumn fx:id="col_class_id" prefWidth="65.0" text="Class_ID" />
+                <TableColumn fx:id="col_course_id" prefWidth="76.0" text="Course_ID" />
+            <TableColumn fx:id="col_stu_fname" prefWidth="91.0" text="Stu_FName" />
+            <TableColumn fx:id="col_stu_lname" prefWidth="86.0" text="Stu_LName" />
+            <TableColumn fx:id="col_stu_dob" text="Stu_DOB" />
+            <TableColumn fx:id="col_stu_email" prefWidth="97.0" text="Stu_Email" />
+            <TableColumn fx:id="col_stu_phone" prefWidth="110.0" text="Stu_Phone" />
+            <TableColumn fx:id="col_stu_address" prefWidth="164.0" text="Stu_Address" />
+            <TableColumn fx:id="col_stu_lang" prefWidth="70.0" text="Stu_Lang" />
+            <TableColumn fx:id="col_stu_abs" prefWidth="63.0" text="Stu_Abs" />
+            <TableColumn fx:id="col_date_mod" prefWidth="86.0" text="Date_Mod" />
+            </columns>
+        </TableView>
+        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <Text fx:id="classID1" layoutX="14.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="class_id" layoutX="72.0" layoutY="152.0" />
+      <TextField fx:id="stu_lname" layoutX="86.0" layoutY="257.0" />
+      <TextField fx:id="stu_email" layoutX="86.0" layoutY="322.0" />
+      <TextField fx:id="stu_fname" layoutX="86.0" layoutY="226.0" />
+      <Text layoutX="4.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_FName:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="13.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_Abs:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_DOB:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="11.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_Lang:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="2.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_Address:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="9.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_Email:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="4.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_LName:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="4.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_Phone:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="stu_phone" layoutX="86.0" layoutY="352.0" />
+      <TextField fx:id="stu_address" layoutX="86.0" layoutY="384.0" />
+      <TextField fx:id="stu_abs" layoutX="77.0" layoutY="449.0" />
+      <TextField fx:id="stu_lang" layoutX="86.0" layoutY="417.0" />
+      <TextField fx:id="stu_dob" layoutX="86.0" layoutY="287.0" />
+    </children>
+</AnchorPane>
