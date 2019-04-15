@@ -4,10 +4,11 @@ public class Course {
 
     String Course_ID, Course_Sac, Course_Name;
 
-    public Course(String course_ID, String course_Sac, String course_Name) {
-        Course_ID = course_ID;
-        Course_Sac = course_Sac;
-        Course_Name = course_Name;
+    public Course(String Course_ID, String Course_Sac, String Course_Name){
+        this.Course_ID= Course_ID;
+        this.Course_Sac= Course_Sac;
+        this.Course_Name=Course_Name;
+
     }
 
     public String getCourse_ID() {

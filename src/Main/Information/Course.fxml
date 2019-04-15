@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.CourseController">
+    <children>
+        <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course" underline="true">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="59.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="314.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course_Sac:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="course_id" layoutX="140.0" layoutY="504.0" />
+        <TextField fx:id="course_sac" layoutX="413.0" layoutY="504.0" />
+        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_Course" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_Course" text="Update" />
+        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_Course" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <TableView fx:id="table" layoutX="278.0" layoutY="69.0" prefHeight="396.0" prefWidth="345.0">
+            <columns>
+                <TableColumn fx:id="col_course_id" prefWidth="75.0" text="Course_ID" />
+                <TableColumn fx:id="col_course_sac" prefWidth="126.0" text="Course_Sac" />
+            <TableColumn fx:id="col_course_name" prefWidth="142.0" text="Course_Name" />
+            </columns>
+        </TableView>
+        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+      <TextField fx:id="course_name" layoutX="140.0" layoutY="555.0" />
+      <Text layoutX="34.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course_Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
