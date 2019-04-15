@@ -1,12 +1,14 @@
 package Information;
 
-public class Admin_Registration_Form {
-    String AReg_ID, Adm_ID, AReg_Date;
+public class AdminRegistrationForm {
 
-    public Admin_Registration_Form(String AReg_ID, String adm_ID, String AReg_Date) {
-        this.AReg_ID = AReg_ID;
-        Adm_ID = adm_ID;
-        this.AReg_Date = AReg_Date;
+    String AReg_ID,Adm_ID, AReg_Date;
+
+    public AdminRegistrationForm(String AReg_ID, String Adm_ID, String AReg_Date){
+        this.AReg_ID=AReg_ID;
+        this.Adm_ID=Adm_ID;
+        this.AReg_Date=AReg_Date;
+
     }
 
     public String getAReg_ID() {
