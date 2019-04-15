@@ -77,7 +77,7 @@ public class AdminAccountController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL admin_account_insert(?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL admin_account_insert(?,?,?)}");
 
             stmt.setString(1, this.adm_id.getText());
             stmt.setString(2, this.adm_user.getText());
