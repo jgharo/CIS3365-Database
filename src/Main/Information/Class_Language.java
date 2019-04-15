@@ -3,10 +3,10 @@ package Information;
 public class Class_Language {
     String ClassLang_ID, Class_ID, Class_Lang;
 
-    public Class_Language(String classLang_ID, String class_ID, String class_Lang) {
-        ClassLang_ID = classLang_ID;
-        Class_ID = class_ID;
-        Class_Lang = class_Lang;
+    public Class_Language(String ClassLang_ID, String Class_ID, String Class_Lang) {
+        this.ClassLang_ID = ClassLang_ID;
+        this.Class_ID = Class_ID;
+        this.Class_Lang = Class_Lang;
     }
 
     public String getClassLang_ID() {
