@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.MasterAdminAccountController">
+    <children>
+        <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Master Admin Account" underline="true">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="32.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAdm_Acc_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="314.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAdm_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="madm_acc_id" layoutX="140.0" layoutY="504.0" />
+        <TextField fx:id="madm_id" layoutX="413.0" layoutY="504.0" />
+        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_MasterAdminAccount" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_MasterAdminAccount" text="Update" />
+        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_MasterAdminAccount" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <TableView fx:id="table" layoutX="278.0" layoutY="69.0" prefHeight="396.0" prefWidth="454.0">
+            <columns>
+                <TableColumn fx:id="col_madm_acc_id" prefWidth="102.0" text="MAdm_Acc_ID" />
+                <TableColumn fx:id="col_madm_id" prefWidth="131.0" text="MAdm_ID" />
+                <TableColumn fx:id="col_madm_user" prefWidth="110.0" text="MAdm_User" />
+                <TableColumn fx:id="col_madm_pass" prefWidth="110.0" text="MAdm_Pass" />
+            </columns>
+        </TableView>
+        <Button fx:id="menuButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#mainmenu" text="Main Menu" />
+        <TextField fx:id="madm_user" layoutX="140.0" layoutY="567.0" />
+        <Text layoutX="39.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAdm_User:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="madm_pass" layoutX="405.0" layoutY="567.0" />
+        <Text layoutX="314.0" layoutY="584.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAdm_Pass:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
