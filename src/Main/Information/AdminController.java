@@ -109,12 +109,12 @@ public class AdminController implements Initializable {
         try{
             Connection con = DBconnect.getConnection();
             CallableStatement stmtAdmin = con.prepareCall("{CALL admin_insert(?,?,?,?,?)}");
-                Admin admin = adminTable.getSelectionModel().getSelectedItem();
+
                 stmtAdmin.setString(1, firstText.getText());
                 stmtAdmin.setString(2, lastText.getText());
                 stmtAdmin.setString(3, addressText.getText());
-                stmtAdmin.setString(4, phoneText.getText());
-                stmtAdmin.setString(5, emailText.getText());
+                stmtAdmin.setString(4, emailText.getText());
+                stmtAdmin.setString(5, phoneText.getText());
 
                 stmtAdmin.execute();
                 setAdminTable();
@@ -142,8 +142,8 @@ public class AdminController implements Initializable {
             stmtAdmin.setString(1, firstText.getText());
             stmtAdmin.setString(2, lastText.getText());
             stmtAdmin.setString(3, emailText.getText());
-            stmtAdmin.setString(4, addressText.getText());
-            stmtAdmin.setString(5, phoneText.getText());
+            stmtAdmin.setString(4, phoneText.getText());
+            stmtAdmin.setString(5, addressText.getText());
             stmtAdmin.setString(6, id.getText());
 
             stmtAdmin.executeUpdate();
@@ -194,5 +194,14 @@ public class AdminController implements Initializable {
         var stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
 
         stage.setScene(returnScene);
+    }
+
+    public void clearAdmin(ActionEvent actionEvent) {
+        firstText.setText("");
+        lastText.setText("");
+        phoneText.setText("");
+        emailText.setText("");
+        addressText.setText("");
+        id.setText("");
     }
 }
