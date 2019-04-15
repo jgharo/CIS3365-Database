@@ -57,9 +57,9 @@ public class AdminController implements Initializable {
                 id.setText(admin.getAdm_ID());
                 firstText.setText(admin.getAdm_FName());
                 lastText.setText(admin.getAdm_LName());
+                emailText.setText(admin.getAdm_Address());
                 phoneText.setText(admin.getAdm_Phone());
-                emailText.setText(admin.getAdm_Email());
-                addressText.setText(admin.getAdm_Address());
+                addressText.setText(admin.getAdm_Email());
                 adminTable.refresh();
             }
         });
@@ -75,8 +75,8 @@ public class AdminController implements Initializable {
         firstCol.setCellValueFactory(new PropertyValueFactory<>("Adm_FName"));
         lastCol.setCellValueFactory(new PropertyValueFactory<>("Adm_LName"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("Adm_Phone"));
-        emailCol.setCellValueFactory(new PropertyValueFactory<>("Adm_Address"));
-        addressColl.setCellValueFactory(new PropertyValueFactory<>("Adm_Email"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("Adm_Email"));
+        addressColl.setCellValueFactory(new PropertyValueFactory<>("Adm_Address"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("Date_Mod"));
     }
 
