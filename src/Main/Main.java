@@ -9,7 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Information/AdminAccount.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Information/AdminRegistrationForm.fxml"));
         primaryStage.setTitle("St. Philip of Jesus Management System");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
