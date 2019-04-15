@@ -112,9 +112,9 @@ public class AdminController implements Initializable {
 
                 stmtAdmin.setString(1, firstText.getText());
                 stmtAdmin.setString(2, lastText.getText());
-                stmtAdmin.setString(3, phoneText.getText());
-                stmtAdmin.setString(4, addressText.getText());
-                stmtAdmin.setString(5, emailText.getText());
+                stmtAdmin.setString(3, emailText.getText());
+                stmtAdmin.setString(4, phoneText.getText());
+                stmtAdmin.setString(5, addressText.getText());
 
                 stmtAdmin.execute();
                 setAdminTable();
