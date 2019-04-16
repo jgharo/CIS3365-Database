@@ -30,9 +30,10 @@ public class SacramentController implements Initializable {
     @FXML
     private TableView<Sacrament> table;
     @FXML
-    private TableColumn<Sacrament,String> col_sac_id;
+    private TableColumn<Sacrament, String> col_sac_id;
     @FXML
     private TableColumn<Sacrament, String> col_sac_type;
+
 
     @FXML
     private TextField sac_id;
@@ -40,20 +41,46 @@ public class SacramentController implements Initializable {
     private TextField sac_type;
 
 
-    ObservableList<Sacrament> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Sacrament> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            Sacrament stu = newval;
+            if (stu != null) {
+                sac_id.setText(stu.getSac_ID());
+                sac_type.setText(stu.getSac_Type());
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setSacramentTable();
+        displayDatabase();
+
+    }
+
+    private void setSacramentTable() {
+        col_sac_id.setCellValueFactory(new PropertyValueFactory<>("Sac_ID"));
+        col_sac_type.setCellValueFactory(new PropertyValueFactory<>("Sac_Type"));
+
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<Sacrament> sacInfo = FXCollections.observableArrayList();
 
         try {
 
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmtstu= con.prepareCall("{CALL sacrament_select()}");
+            CallableStatement stmt= con.prepareCall("{CALL sacrament_select()}");
 
-            ResultSet rs= stmtstu.executeQuery();
+            ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new Sacrament(rs.getString("Sac_ID"),rs.getString("Sac_Type")));
+                sacInfo.add(new Sacrament(rs.getString("Sac_ID"),rs.getString("Sac_Type")));
 
             }
 
@@ -61,10 +88,7 @@ public class SacramentController implements Initializable {
             Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_sac_id.setCellValueFactory(new PropertyValueFactory<>("Sac_ID"));
-        col_sac_type.setCellValueFactory(new PropertyValueFactory<>("Sac_Type"));
-
-        table.setItems(oblist);
+        table.setItems(sacInfo);
 
     }
 
@@ -78,11 +102,19 @@ public class SacramentController implements Initializable {
 
             stmt.setString(1, this.sac_type.getText());
             stmt.execute();
+            setSacramentTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            sac_id.setText("");
+            sac_type.setText("");
         }
 
     }
@@ -98,12 +130,17 @@ public class SacramentController implements Initializable {
             stmtstu.setString(1, this.sac_id.getText());
 
             stmtstu.execute();
+            setSacramentTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            sac_id.setText("");
         }
 
     }
@@ -119,8 +156,11 @@ public class SacramentController implements Initializable {
             stmt.setString(1, this.sac_id.getText());
             stmt.setString(2, this.sac_type.getText());
 
-
             stmt.execute();
+            setSacramentTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -129,8 +169,18 @@ public class SacramentController implements Initializable {
             Logger.getLogger(SacramentController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        finally{
+            sac_id.setText("");
+            sac_type.setText("");
+        }
+
     }
 
+    @FXML
+    private void clear_SacramentForm(ActionEvent actionEvent) {
+        sac_id.setText("");
+        sac_type.setText("");
+    }
 
     @SuppressWarnings("Duplicates")
     public void backButtonPushed(ActionEvent event) throws IOException
@@ -141,4 +191,5 @@ public class SacramentController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
 }

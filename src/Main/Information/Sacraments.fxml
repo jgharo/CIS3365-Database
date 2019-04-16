@@ -36,5 +36,6 @@
             </columns>
         </TableView>
         <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+      <Button layoutX="837.0" layoutY="542.0" mnemonicParsing="false" onAction="#clear_SacramentForm" text="Clear" />
     </children>
 </AnchorPane>
