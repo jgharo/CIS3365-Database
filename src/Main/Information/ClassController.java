@@ -48,35 +48,53 @@ public class ClassController implements Initializable {
     @FXML
     private TextField class_name;
 
-
-    ObservableList<Class> oblist = FXCollections.observableArrayList();
-
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
+        ObservableList<Class> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            Class classes = newval;
+            if (classes != null) {
+                class_id.setText(classes.getClass_ID());
+                teach_id.setText(classes.getTeach_ID());
+                course_id.setText(classes.getCourse_ID());
+                class_name.setText(classes.getClass_Name());
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setClassTable();
+        displayDatabase();
+    }
+
+    private void setClassTable() {
+        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
+        col_teach_id.setCellValueFactory(new PropertyValueFactory<>("Teach_ID"));
+        col_course_id.setCellValueFactory(new PropertyValueFactory<>("Course_ID"));
+        col_class_name.setCellValueFactory(new PropertyValueFactory<>("Class_Name"));
+    }
+
+    private void displayDatabase() {
+        ObservableList<Class> classInfo = FXCollections.observableArrayList();
 
         try {
 
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt= con.prepareCall("{CALL class_select()}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL class_select()}");
 
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next()){
-                oblist.add(new Class(rs.getString("Class_ID"),rs.getString("Teach_ID"),rs.getString("Course_ID"),rs.getString("Class_Name")));
-
+            ResultSet rs = stmtAdmin.executeQuery();
+            while (rs.next()) {
+                classInfo.add(new Class(rs.getString("class_ID"), rs.getString("teach_ID"), rs.getString("course_ID"),
+                        rs.getString("class_Name")));
             }
 
-        } catch (SQLException ex){
-            Logger.getLogger(ClassController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-
-        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
-        col_teach_id.setCellValueFactory(new PropertyValueFactory<>("Teach_ID"));
-        col_course_id.setCellValueFactory(new PropertyValueFactory<>("Course_ID"));
-        col_class_name.setCellValueFactory(new PropertyValueFactory<>("Class_Name"));
-
-        table.setItems(oblist);
-
+        table.setItems(classInfo);
     }
 
     @FXML
@@ -87,17 +105,25 @@ public class ClassController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL class_insert(?,?,?)}");
 
-            stmt.setString(1, this.teach_id.getText());
-            stmt.setString(2, this.course_id.getText());
-            stmt.setString(3, this.class_name.getText());
+            stmt.setString(1, teach_id.getText());
+            stmt.setString(2, course_id.getText());
+            stmt.setString(3, class_name.getText());
+
             stmt.execute();
+            setClassTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
-        }
-        catch (SQLException ex){
-            Logger.getLogger(ClassController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (SQLException ex){
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
 
+        } finally {
+            teach_id.setText("");
+            course_id.setText("");
+            class_name.setText("");
+        }
     }
 
     @FXML
@@ -108,42 +134,62 @@ public class ClassController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL class_delete(?)}");
 
-            stmt.setString(1, this.class_id.getText());
+            stmt.setString(1, class_id.getText());
 
             stmt.execute();
+            setClassTable();
+            displayDatabase();
             con.close();
-
-
         }
         catch (SQLException ex){
-            Logger.getLogger(ClassController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            class_id.setText("");
+            teach_id.setText("");
+            course_id.setText("");
+            class_name.setText("");
         }
 
     }
 
-    @FXML
-    private void update_Class(ActionEvent event){
+    public void update_Class(ActionEvent event){
 
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL course_update(?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL class_update(?,?,?,?)}");
 
-            stmt.setString(1, this.class_id.getText());
-            stmt.setString(2, this.teach_id.getText());
-            stmt.setString(3, this.course_id.getText());
-            stmt.setString(4, this.class_id.getText());
+            stmt.setString(1, class_id.getText());
+            stmt.setString(2, teach_id.getText());
+            stmt.setString(3, course_id.getText());
+            stmt.setString(4, class_name.getText());
 
-
-            stmt.execute();
+            stmt.executeUpdate();
+            setClassTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
-
 
         }
         catch (SQLException ex){
-            Logger.getLogger(ClassController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            class_id.setText("");
+            teach_id.setText("");
+            course_id.setText("");
+            class_name.setText("");
         }
 
+    }
+
+    public void clearClass (ActionEvent actionEvent) {
+        class_id.setText("");
+        teach_id.setText("");
+        course_id.setText("");
+        class_name.setText("");
     }
 
     @SuppressWarnings("Duplicates")
