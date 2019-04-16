@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -47,35 +48,55 @@ public class MasterAdminAccountController implements Initializable {
     @FXML
     private TextField madm_pass;
 
-
-    ObservableList<MasterAdminAccount> oblist = FXCollections.observableArrayList();
+    Scene returnScene;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
+        ObservableList<MasterAdminAccount> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            MasterAdminAccount admin = newval;
+            if (admin != null) {
+                madm_acc_id.setText(admin.getMAdm_Acc_ID());
+                madm_id.setText(admin.getMAdm_ID());
+                madm_user.setText(admin.getMAdm_User());
+                madm_pass.setText(admin.getMAdm_Pass());
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setMasterAdminAccountTable();
+        displayDatabase();
+    }
+
+    private void setMasterAdminAccountTable() {
+        col_madm_acc_id.setCellValueFactory(new PropertyValueFactory<>("MAdm_Acc_ID"));
+        col_madm_id.setCellValueFactory(new PropertyValueFactory<>("MAdm_ID"));
+        col_madm_user.setCellValueFactory(new PropertyValueFactory<>("MAdm_User"));
+        col_madm_pass.setCellValueFactory(new PropertyValueFactory<>("MAdm_Pass"));
+    }
+
+    private void displayDatabase() {
+        ObservableList<MasterAdminAccount> madminInfo = FXCollections.observableArrayList();
 
         try {
 
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt= con.prepareCall("{CALL master_admin_account_select()}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL master_admin_account_select()}");
 
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next()){
-                oblist.add(new MasterAdminAccount(rs.getString("Madm_Acc_ID"),rs.getString("Madm_ID"), rs.getString("Madm_User"), rs.getString("Madm_Pass")));
-
+            ResultSet rs = stmtAdmin.executeQuery();
+            while (rs.next()) {
+                madminInfo.add(new MasterAdminAccount(rs.getString("MAdm_Acc_ID"), rs.getString("MAdm_ID"), rs.getString("MAdm_User"),
+                        rs.getString("MAdm_Pass")));
             }
 
-        } catch (SQLException ex){
-            Logger.getLogger(MasterAdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MasterAdmin.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-
-        col_madm_acc_id.setCellValueFactory(new PropertyValueFactory<>("Madm_Acc_ID"));
-        col_madm_id.setCellValueFactory(new PropertyValueFactory<>("Madm_ID"));
-        col_madm_user.setCellValueFactory(new PropertyValueFactory<>("Madm_User"));
-        col_madm_pass.setCellValueFactory(new PropertyValueFactory<>("Madm_Pass"));
-
-        table.setItems(oblist);
-
+        table.setItems(madminInfo);
     }
 
     @FXML
@@ -86,17 +107,25 @@ public class MasterAdminAccountController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL master_admin_account_insert(?,?,?)}");
 
-            stmt.setString(1, this.madm_id.getText());
-            stmt.setString(2, this.madm_user.getText());
-            stmt.setString(3, this.madm_pass.getText());
+            stmt.setString(1, madm_id.getText());
+            stmt.setString(2, madm_user.getText());
+            stmt.setString(3, madm_pass.getText());
+
             stmt.execute();
+            setMasterAdminAccountTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex){
             Logger.getLogger(MasterAdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+        } finally {
+            madm_id.setText("");
+            madm_user.setText("");
+            madm_pass.setText("");
+        }
     }
 
     @FXML
@@ -107,15 +136,18 @@ public class MasterAdminAccountController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL master_admin_account_delete(?)}");
 
-            stmt.setString(1, this.madm_acc_id.getText());
+            stmt.setString(1, madm_acc_id.getText());
 
             stmt.execute();
+            setMasterAdminAccountTable();
+            displayDatabase();
             con.close();
-
-
         }
         catch (SQLException ex){
             Logger.getLogger(MasterAdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            madm_acc_id.setText("");
         }
 
     }
@@ -128,20 +160,36 @@ public class MasterAdminAccountController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL master_admin_account_update(?,?,?,?)}");
 
-            stmt.setString(1, this.madm_acc_id.getText());
-            stmt.setString(2, this.madm_id.getText());
-            stmt.setString(3, this.madm_user.getText());
-            stmt.setString(4, this.madm_pass.getText());
+            stmt.setString(1, madm_acc_id.getText());
+            stmt.setString(2, madm_id.getText());
+            stmt.setString(3, madm_user.getText());
+            stmt.setString(4, madm_pass.getText());
 
-            stmt.execute();
+            stmt.executeUpdate();
+            setMasterAdminAccountTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
-
 
         }
         catch (SQLException ex){
             Logger.getLogger(MasterAdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            madm_acc_id.setText("");
+            madm_id.setText("");
+            madm_user.setText("");
+            madm_pass.setText("");
         }
 
+    }
+
+    public void clearMasterAdminAccount (ActionEvent actionEvent) {
+        madm_acc_id.setText("");
+        madm_id.setText("");
+        madm_user.setText("");
+        madm_pass.setText("");
     }
 
     @SuppressWarnings("Duplicates")
