@@ -2,13 +2,13 @@ package Information;
 
 public class Student {
 
-    String Stu_ID, Par_ID, Class_ID, Course_ID,Stu_FName, Stu_LName, Stu_DOB, Stu_Email, Stu_Phone, Stu_Address, Stu_Lang, Stu_Abs,Date_Mod;
+    String Stu_ID, Par_ID, Class_ID,Stu_FName, Stu_LName, Stu_DOB, Stu_Email, Stu_Phone, Stu_Address, Stu_Lang, Stu_Abs,Date_Mod;
 
-    public Student(String Stu_ID, String Par_ID, String Class_ID, String Course_ID, String Stu_FName, String Stu_LName, String Stu_DOB, String Stu_Email, String Stu_Phone, String Stu_Address, String Stu_Lang, String Stu_Abs, String Date_Mod ){
+    public Student(String Stu_ID, String Par_ID, String Class_ID, String Stu_FName, String Stu_LName, String Stu_DOB, String Stu_Email, String Stu_Phone, String Stu_Address, String Stu_Lang, String Stu_Abs, String Date_Mod ){
         this.Stu_ID= Stu_ID;
         this.Par_ID= Par_ID;
         this.Class_ID=Class_ID;
-        this.Course_ID=Course_ID;
+
         this.Stu_FName=Stu_FName;
         this.Stu_LName=Stu_LName;
         this.Stu_DOB=Stu_DOB;
@@ -43,14 +43,6 @@ public class Student {
 
     public void setClass_ID(String class_ID) {
         Class_ID = class_ID;
-    }
-
-    public String getCourse_ID() {
-        return Course_ID;
-    }
-
-    public void setCourse_ID(String course_ID) {
-        Course_ID = course_ID;
     }
 
     public String getStu_FName() {

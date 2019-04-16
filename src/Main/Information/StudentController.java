@@ -36,8 +36,6 @@ public class StudentController implements Initializable {
     @FXML
     private TableColumn<Student, String> col_class_id;
     @FXML
-    private TableColumn<Student, String> col_course_id;
-    @FXML
     private TableColumn<Student, String> col_stu_fname;
     @FXML
     private TableColumn<Student, String> col_stu_lname;
@@ -62,8 +60,6 @@ public class StudentController implements Initializable {
     private TextField par_id;
     @FXML
     private TextField class_id;
-    @FXML
-    private TextField course_id;
     @FXML
     private TextField stu_fname;
     @FXML
@@ -92,7 +88,6 @@ public class StudentController implements Initializable {
                 stu_id.setText(stu.getStu_ID());
                 par_id.setText(stu.getPar_ID());
                 class_id.setText(stu.getClass_ID());
-                course_id.setText(stu.getCourse_ID());
                 stu_fname.setText(stu.getStu_FName());
                 stu_lname.setText(stu.getStu_LName());
                 stu_dob.setText(stu.getStu_DOB());
@@ -115,7 +110,6 @@ public class StudentController implements Initializable {
         col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
         col_par_id.setCellValueFactory(new PropertyValueFactory<>("Par_ID"));
         col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
-        col_course_id.setCellValueFactory(new PropertyValueFactory<>("Course_ID"));
         col_stu_fname.setCellValueFactory(new PropertyValueFactory<>("Stu_FName"));
         col_stu_lname.setCellValueFactory(new PropertyValueFactory<>("Stu_LName"));
         col_stu_dob.setCellValueFactory(new PropertyValueFactory<>("Stu_DOB"));
@@ -138,7 +132,7 @@ public class StudentController implements Initializable {
 
             ResultSet rs = stmtstu.executeQuery();
             while (rs.next()) {
-                studentInfo.add(new Student(rs.getString("Stu_ID"), rs.getString("Par_ID"), rs.getString("Class_ID"), rs.getString("Course_ID"),
+                studentInfo.add(new Student(rs.getString("Stu_ID"), rs.getString("Par_ID"), rs.getString("Class_ID"),
                         rs.getString("Stu_FName"), rs.getString("Stu_LName"), rs.getString("Stu_DOB"), rs.getString("Stu_Email"), rs.getString("Stu_Phone"),
                         rs.getString("Stu_Address"), rs.getString("Stu_Lang"), rs.getString("Stu_Abs"), rs.getString("Date_Mod")));
 
@@ -156,19 +150,18 @@ public class StudentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmtstu = con.prepareCall("{CALL student_insert(?,?,?,?,?,?,?,?,?,?,?)}");
+            CallableStatement stmtstu = con.prepareCall("{CALL student_insert(?,?,?,?,?,?,?,?,?,?)}");
 
             stmtstu.setString(1, this.par_id.getText());
             stmtstu.setString(2, this.class_id.getText());
-            stmtstu.setString(3, this.course_id.getText());
-            stmtstu.setString(4, this.stu_fname.getText());
-            stmtstu.setString(5, this.stu_lname.getText());
-            stmtstu.setString(6, this.stu_dob.getText());
-            stmtstu.setString(7, this.stu_email.getText());
-            stmtstu.setString(8, this.stu_phone.getText());
-            stmtstu.setString(9, this.stu_address.getText());
-            stmtstu.setString(10, this.stu_lang.getText());
-            stmtstu.setString(11, this.stu_abs.getText());
+            stmtstu.setString(3, this.stu_fname.getText());
+            stmtstu.setString(4, this.stu_lname.getText());
+            stmtstu.setString(5, this.stu_dob.getText());
+            stmtstu.setString(6, this.stu_email.getText());
+            stmtstu.setString(7, this.stu_phone.getText());
+            stmtstu.setString(8, this.stu_address.getText());
+            stmtstu.setString(9, this.stu_lang.getText());
+            stmtstu.setString(10, this.stu_abs.getText());
 
             stmtstu.execute();
             setStudentTable();
@@ -186,7 +179,6 @@ public class StudentController implements Initializable {
             stu_id.setText("");
             par_id.setText("");
             class_id.setText("");
-            course_id.setText("");
             stu_fname.setText("");
             stu_lname.setText("");
             stu_dob.setText("");
@@ -224,7 +216,6 @@ public class StudentController implements Initializable {
             stu_id.setText("");
             par_id.setText("");
             class_id.setText("");
-            course_id.setText("");
             stu_fname.setText("");
             stu_lname.setText("");
             stu_dob.setText("");
@@ -243,20 +234,19 @@ public class StudentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmtstu = con.prepareCall("{CALL student_update(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            CallableStatement stmtstu = con.prepareCall("{CALL student_update(?,?,?,?,?,?,?,?,?,?,?)}");
 
             stmtstu.setString(1, this.stu_id.getText());
             stmtstu.setString(2, this.par_id.getText());
             stmtstu.setString(3, this.class_id.getText());
-            stmtstu.setString(4, this.course_id.getText());
-            stmtstu.setString(5, this.stu_fname.getText());
-            stmtstu.setString(6, this.stu_lname.getText());
-            stmtstu.setString(7, this.stu_dob.getText());
-            stmtstu.setString(8, this.stu_email.getText());
-            stmtstu.setString(9, this.stu_phone.getText());
-            stmtstu.setString(10, this.stu_address.getText());
-            stmtstu.setString(11, this.stu_lang.getText());
-            stmtstu.setString(12, this.stu_abs.getText());
+            stmtstu.setString(4, this.stu_fname.getText());
+            stmtstu.setString(5, this.stu_lname.getText());
+            stmtstu.setString(6, this.stu_dob.getText());
+            stmtstu.setString(7, this.stu_email.getText());
+            stmtstu.setString(8, this.stu_phone.getText());
+            stmtstu.setString(9, this.stu_address.getText());
+            stmtstu.setString(10, this.stu_lang.getText());
+            stmtstu.setString(11, this.stu_abs.getText());
 
 
             stmtstu.execute();
@@ -275,7 +265,6 @@ public class StudentController implements Initializable {
             stu_id.setText("");
             par_id.setText("");
             class_id.setText("");
-            course_id.setText("");
             stu_fname.setText("");
             stu_lname.setText("");
             stu_dob.setText("");
@@ -294,7 +283,6 @@ public class StudentController implements Initializable {
         stu_id.setText("");
         par_id.setText("");
         class_id.setText("");
-        course_id.setText("");
         stu_fname.setText("");
         stu_lname.setText("");
         stu_dob.setText("");
