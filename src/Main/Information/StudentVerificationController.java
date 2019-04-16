@@ -44,10 +44,38 @@ public class StudentVerificationController implements Initializable {
     private TextField stu_verify;
 
 
-    ObservableList<StudentVerification> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<StudentVerification> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            StudentVerification stu = newval;
+            if (stu != null) {
+                adm_id.setText(stu.getAdm_ID());
+                stu_id.setText(stu.getStu_ID());
+                stu_verify.setText(stu.getStu_Verify());
+
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setStudentVerTable();
+        displayDatabase();
+
+    }
+
+    private void setStudentVerTable() {
+        col_adm_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
+        col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
+        col_stu_verify.setCellValueFactory(new PropertyValueFactory<>("Stu_Verify"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<StudentVerification> studentverInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +85,7 @@ public class StudentVerificationController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new StudentVerification(rs.getString("Adm_ID"),rs.getString("Stu_ID"), rs.getString("Stu_Verify")));
+                studentverInfo.add(new StudentVerification(rs.getString("Adm_ID"),rs.getString("Stu_ID"), rs.getString("Stu_Verify")));
 
             }
 
@@ -65,11 +93,7 @@ public class StudentVerificationController implements Initializable {
             Logger.getLogger(StudentVerificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_adm_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
-        col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
-        col_stu_verify.setCellValueFactory(new PropertyValueFactory<>("Stu_Verify"));
-
-        table.setItems(oblist);
+        table.setItems(studentverInfo);
 
     }
 
@@ -85,11 +109,20 @@ public class StudentVerificationController implements Initializable {
             stmt.setString(2, this.stu_id.getText());
             stmt.setString(3, this.stu_verify.getText());
             stmt.execute();
+            setStudentVerTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentVerificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         finally{
+            adm_id.setText("");
+            stu_id.setText("");
+            stu_verify.setText("");
         }
 
     }
@@ -105,12 +138,19 @@ public class StudentVerificationController implements Initializable {
             stmtstu.setString(1, this.stu_id.getText());
 
             stmtstu.execute();
+            setStudentVerTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentVerificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            adm_id.setText("");
+            stu_id.setText("");
+            stu_verify.setText("");
         }
 
     }
@@ -128,6 +168,10 @@ public class StudentVerificationController implements Initializable {
             stmt.setString(3, this.stu_verify.getText());
 
             stmt.execute();
+            setStudentVerTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -136,6 +180,19 @@ public class StudentVerificationController implements Initializable {
             Logger.getLogger(StudentVerificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        finally{
+            adm_id.setText("");
+            stu_id.setText("");
+            stu_verify.setText("");
+        }
+
+    }
+
+    @FXML
+    private void clear_StudentVerification(ActionEvent actionEvent) {
+        adm_id.setText("");
+        stu_id.setText("");
+        stu_verify.setText("");
     }
 
     @SuppressWarnings("Duplicates")
