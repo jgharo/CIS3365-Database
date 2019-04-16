@@ -32,7 +32,7 @@ public class StudentTransactionFormController implements Initializable {
     @FXML
     private TableColumn<StudentTransactionForm,String> col_trans_stu_id;
     @FXML
-    private TableColumn<StudentTransactionForm, String> col_stu_id;
+    private TableColumn<StudentTransactionForm, String> col_sreg_id;
     @FXML
     private TableColumn<StudentTransactionForm, String> col_trans_amt;
     @FXML
@@ -43,7 +43,7 @@ public class StudentTransactionFormController implements Initializable {
     @FXML
     private TextField trans_stu_id;
     @FXML
-    private TextField stu_id;
+    private TextField sreg_id;
     @FXML
     private TextField trans_amt;
     @FXML
@@ -52,12 +52,44 @@ public class StudentTransactionFormController implements Initializable {
     private TextField due_date;
 
 
-    ObservableList<StudentTransactionForm> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<StudentTransactionForm> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            StudentTransactionForm stu = newval;
+            if (stu != null) {
+                trans_stu_id.setText(stu.getTrans_Stu_ID());
+                sreg_id.setText(stu.getSReg_ID());
+                trans_amt.setText(stu.getTrans_Amt());
+                trans_remain.setText(stu.getTrans_Remain());
+                due_date.setText(stu.getDue_Date());
 
-        try {
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setStudentTransTable();
+        displayDatabase();
+
+    }
+
+    private void setStudentTransTable(){
+
+        col_trans_stu_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Stu_ID"));
+        col_sreg_id.setCellValueFactory(new PropertyValueFactory<>("SReg_ID"));
+        col_trans_amt.setCellValueFactory(new PropertyValueFactory<>("Trans_Amt"));
+        col_trans_remain.setCellValueFactory(new PropertyValueFactory<>("Trans_Remain"));
+        col_due_date.setCellValueFactory(new PropertyValueFactory<>("Due_Date"));
+    }
+
+    private void displayDatabase(){
+
+
+        ObservableList<StudentTransactionForm> studenttransInfo = FXCollections.observableArrayList();
+
+        try{
 
             Connection con = DBconnect.getConnection();
 
@@ -65,7 +97,7 @@ public class StudentTransactionFormController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new StudentTransactionForm(rs.getString("Trans_Stu_ID"),rs.getString("Stu_ID"), rs.getString("Trans_Amt"), rs.getString("Trans_Remain"),
+                studenttransInfo.add(new StudentTransactionForm(rs.getString("Trans_Stu_ID"),rs.getString("SReg_ID"), rs.getString("Trans_Amt"), rs.getString("Trans_Remain"),
                         rs.getString("Due_Date")));
 
             }
@@ -74,15 +106,14 @@ public class StudentTransactionFormController implements Initializable {
             Logger.getLogger(StudentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_trans_stu_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Stu_ID"));
-        col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
-        col_trans_amt.setCellValueFactory(new PropertyValueFactory<>("Trans_Amt"));
-        col_trans_remain.setCellValueFactory(new PropertyValueFactory<>("Trans_Remain"));
-        col_due_date.setCellValueFactory(new PropertyValueFactory<>("Due_Date"));
 
-        table.setItems(oblist);
+
+        table.setItems(studenttransInfo);
 
     }
+
+
+
 
     @FXML
     private void add_StudentTransactionForm(ActionEvent event){
@@ -92,16 +123,27 @@ public class StudentTransactionFormController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL stu_transaction_insert(?,?,?,?)}");
 
-            stmt.setString(1, this.stu_id.getText());
+            stmt.setString(1, this.sreg_id.getText());
             stmt.setString(2, this.trans_amt.getText());
             stmt.setString(3, this.trans_remain.getText());
             stmt.setString(4, this.due_date.getText());
             stmt.execute();
+            setStudentTransTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            trans_stu_id.setText("");
+            sreg_id.setText("");
+            trans_amt.setText("");
+            trans_remain.setText("");
+            due_date.setText("");
         }
 
     }
@@ -112,17 +154,27 @@ public class StudentTransactionFormController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmtstu = con.prepareCall("{CALL stu_transaction_delete(?)}");
+            CallableStatement stmt = con.prepareCall("{CALL stu_transaction_delete(?)}");
 
-            stmtstu.setString(1, this.trans_stu_id.getText());
+            stmt.setString(1, this.trans_stu_id.getText());
 
-            stmtstu.execute();
+            stmt.execute();
+            setStudentTransTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
-            Logger.getLogger(StudentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ParentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+
+            trans_stu_id.setText("");
+            sreg_id.setText("");
+            trans_amt.setText("");
+            trans_remain.setText("");
+            due_date.setText("");
         }
 
     }
@@ -136,12 +188,16 @@ public class StudentTransactionFormController implements Initializable {
             CallableStatement stmt = con.prepareCall("{CALL stu_transaction_update(?,?,?,?,?)}");
 
             stmt.setString(1, this.trans_stu_id.getText());
-            stmt.setString(2, this.stu_id.getText());
+            stmt.setString(2, this.sreg_id.getText());
             stmt.setString(3, this.trans_amt.getText());
             stmt.setString(4, this.trans_remain.getText());
             stmt.setString(5, this.due_date.getText());
 
             stmt.execute();
+            setStudentTransTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -149,7 +205,24 @@ public class StudentTransactionFormController implements Initializable {
         catch (SQLException ex){
             Logger.getLogger(StudentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
 
+            trans_stu_id.setText("");
+            sreg_id.setText("");
+            trans_amt.setText("");
+            trans_remain.setText("");
+            due_date.setText("");
+        }
+
+
+    }
+    @FXML
+    private void clear_StudentTransactionForm(ActionEvent actionEvent) {
+        trans_stu_id.setText("");
+        sreg_id.setText("");
+        trans_amt.setText("");
+        trans_remain.setText("");
+        due_date.setText("");
     }
 
     @SuppressWarnings("Duplicates")
@@ -161,5 +234,4 @@ public class StudentTransactionFormController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
 }

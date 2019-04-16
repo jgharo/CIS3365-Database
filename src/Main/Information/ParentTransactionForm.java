@@ -9,6 +9,7 @@ public class ParentTransactionForm {
         this.PReg_ID=PReg_ID;
         this.Trans_Amt=Trans_Amt;
         this.Trans_Remain=Trans_Remain;
+        this.Due_Date=Due_Date;
 
     }
 
