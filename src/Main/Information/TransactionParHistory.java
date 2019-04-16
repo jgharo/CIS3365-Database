@@ -5,7 +5,7 @@ public class TransactionParHistory {
     String Trans_Par_Hist_ID,Trans_Par_ID, Trans_Date;
 
     public TransactionParHistory(String Trans_Par_Hist_ID, String Trans_Par_ID, String Trans_Date){
-        this.Trans_Par_Hist_ID=Trans_Par_ID;
+        this.Trans_Par_Hist_ID=Trans_Par_Hist_ID;
         this.Trans_Par_ID=Trans_Par_ID;
         this.Trans_Date=Trans_Date;
 

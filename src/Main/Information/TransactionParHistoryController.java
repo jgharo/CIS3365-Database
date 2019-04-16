@@ -30,7 +30,7 @@ public class TransactionParHistoryController implements Initializable {
     @FXML
     private TableView<TransactionParHistory> table;
     @FXML
-    private TableColumn<TransactionParHistory,String> col_trans_par_hist_id;
+    private TableColumn<TransactionParHistory, String> col_trans_par_hist_id;
     @FXML
     private TableColumn<TransactionParHistory, String> col_trans_par_id;
     @FXML
@@ -43,11 +43,38 @@ public class TransactionParHistoryController implements Initializable {
     @FXML
     private TextField trans_date;
 
-
-    ObservableList<TransactionParHistory> oblist = FXCollections.observableArrayList();
+    Scene returnScene;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+
+        ObservableList<TransactionParHistory> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable, oldval, newval) -> {
+            TransactionParHistory admin = newval;
+            if (admin != null) {
+                trans_par_hist_id.setText(admin.getTrans_Par_Hist_ID());
+                trans_par_id.setText(admin.getTrans_Par_ID());
+                trans_date.setText(admin.getTrans_Date());
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setTransactionParHistoryTable();
+        displayDatabase();
+    }
+
+    private void setTransactionParHistoryTable() {
+
+        col_trans_par_hist_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Par_Hist_ID"));
+        col_trans_par_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Par_ID"));
+        col_trans_date.setCellValueFactory(new PropertyValueFactory<>("Trans_Date"));
+}
+
+
+    private void displayDatabase(){
+
+        ObservableList<TransactionParHistory> transparhistInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +84,7 @@ public class TransactionParHistoryController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new TransactionParHistory(rs.getString("Trans_Par_Hist_ID"),rs.getString("Trans_Par_ID"), rs.getString("Trans_Date")));
+                transparhistInfo.add(new TransactionParHistory(rs.getString("Trans_Par_Hist_ID"),rs.getString("Trans_Par_ID"), rs.getString("Trans_Date")));
 
             }
 
@@ -65,12 +92,7 @@ public class TransactionParHistoryController implements Initializable {
             Logger.getLogger(TransactionParHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_trans_par_hist_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Par_Hist_ID"));
-        col_trans_par_id.setCellValueFactory(new PropertyValueFactory<>("Par_ID"));
-        col_trans_date.setCellValueFactory(new PropertyValueFactory<>("Trans_Date"));
-
-
-        table.setItems(oblist);
+        table.setItems(transparhistInfo);
 
     }
 
@@ -86,11 +108,20 @@ public class TransactionParHistoryController implements Initializable {
             stmt.setString(2, this.trans_date.getText());
 
             stmt.execute();
+            setTransactionParHistoryTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(TransactionParHistoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            trans_par_hist_id.setText("");
+            trans_par_id.setText("");
+            trans_date.setText("");
         }
 
     }
@@ -101,17 +132,23 @@ public class TransactionParHistoryController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL par_transaction_delete(?)}");
+            CallableStatement stmt = con.prepareCall("{CALL trans_par_hist_delete(?)}");
 
             stmt.setString(1, this.trans_par_hist_id.getText());
 
             stmt.execute();
+            setTransactionParHistoryTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(TransactionParHistoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            trans_par_hist_id.setText("");
+
         }
 
     }
@@ -122,12 +159,16 @@ public class TransactionParHistoryController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL trans_hist_par_update(?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL trans_par_hist_update(?,?,?)}");
 
             stmt.setString(1, this.trans_par_hist_id.getText());
             stmt.setString(2, this.trans_par_id.getText());
             stmt.setString(3, this.trans_date.getText());
             stmt.execute();
+            setTransactionParHistoryTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -135,7 +176,18 @@ public class TransactionParHistoryController implements Initializable {
         catch (SQLException ex){
             Logger.getLogger(TransactionParHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally {
+            trans_par_hist_id.setText("");
+            trans_par_id.setText("");
+            trans_date.setText("");
+        }
 
+    }
+
+    public void clearTransactionParHistory (ActionEvent actionEvent) {
+        trans_par_hist_id.setText("");
+        trans_par_id.setText("");
+        trans_date.setText("");
     }
 
 
