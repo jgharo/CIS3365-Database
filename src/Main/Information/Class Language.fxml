@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="739.0" prefWidth="417.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.Class_Language_Controller">
+<AnchorPane prefHeight="739.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.Class_Language_Controller">
     <children>
         <Text layoutX="140.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class Language" underline="true">
             <font>

@@ -45,34 +45,52 @@ public class Class_Language_Controller implements Initializable {
     @FXML
     private TextField class_lang;
 
-
-    ObservableList<Class_Language> oblist = FXCollections.observableArrayList();
+    Scene returnScene;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
+        ObservableList<Class_Language> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            Class_Language classLanguage = newval;
+            if (classLanguage != null) {
+                classlang_id.setText(classLanguage.getClassLang_ID());
+                class_id.setText(classLanguage.getClass_ID());
+                class_lang.setText(classLanguage.getClass_Lang());
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setClassLanguage();
+        displayDatabase();
+    }
+
+    private void setClassLanguage() {
+        col_classlang_id.setCellValueFactory(new PropertyValueFactory<>("ClassLang_ID"));
+        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
+        col_class_lang.setCellValueFactory(new PropertyValueFactory<>("Class_Lang"));
+    }
+
+    private void displayDatabase() {
+        ObservableList<Class_Language> classInfo = FXCollections.observableArrayList();
 
         try {
 
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt= con.prepareCall("{CALL class_language_select()}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL class_language_select()}");
 
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next()){
-                oblist.add(new Class_Language(rs.getString("ClassLang_ID"),rs.getString("Class_ID"),rs.getString("Class_Lang")));
-
+            ResultSet rs = stmtAdmin.executeQuery();
+            while (rs.next()) {
+                classInfo.add(new Class_Language(rs.getString("classLang_ID"), rs.getString("class_ID"), rs.getString("class_Lang")));
             }
 
-        } catch (SQLException ex){
-            Logger.getLogger(Class_Language_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-
-        col_classlang_id.setCellValueFactory(new PropertyValueFactory<>("ClassLang_ID"));
-        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
-        col_class_lang.setCellValueFactory(new PropertyValueFactory<>("Class_Lang"));
-
-        table.setItems(oblist);
-
+        table.setItems(classInfo);
     }
 
     @FXML
@@ -83,14 +101,23 @@ public class Class_Language_Controller implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL class_language_insert(?,?)}");
 
-            stmt.setString(1, this.class_id.getText());
-            stmt.setString(2, this.class_lang.getText());
+            stmt.setString(1, class_id.getText());
+            stmt.setString(2, class_lang.getText());
+
             stmt.execute();
+            setClassLanguage();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(Class_Language_Controller.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            class_id.setText("");
+            class_lang.setText("");
         }
 
     }
@@ -103,15 +130,19 @@ public class Class_Language_Controller implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL class_language_delete(?)}");
 
-            stmt.setString(1, this.classlang_id.getText());
+            stmt.setString(1, classlang_id.getText());
 
             stmt.execute();
+            setClassLanguage();
+            displayDatabase();
             con.close();
-
 
         }
         catch (SQLException ex){
             Logger.getLogger(Class_Language_Controller.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            classlang_id.setText("");
         }
 
     }
@@ -124,20 +155,34 @@ public class Class_Language_Controller implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL class_language_update(?,?,?)}");
 
-            stmt.setString(1, this.classlang_id.getText());
-            stmt.setString(2, this.class_id.getText());
-            stmt.setString(3, this.class_lang.getText());
+            stmt.setString(1, classlang_id.getText());
+            stmt.setString(2, class_id.getText());
+            stmt.setString(3, class_lang.getText());
 
-
-            stmt.execute();
+            stmt.executeUpdate();
+            setClassLanguage();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
-
         }
-        catch (SQLException ex){
+        catch (SQLException ex) {
             Logger.getLogger(Class_Language_Controller.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            classlang_id.setText("");
+            class_id.setText("");
+            class_lang.setText("");
         }
 
+
+    }
+
+    public void clearClassLang (ActionEvent actionEvent) {
+        classlang_id.setText("");
+        class_id.setText("");
+        class_lang.setText("");
     }
 
     @SuppressWarnings("Duplicates")

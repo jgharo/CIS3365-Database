@@ -48,12 +48,6 @@ public class AdminAccountController implements Initializable {
     @FXML
     private TextField adm_pass;
 
-    @FXML
-    public Button addButton;
-    public Button updateButton;
-    public Button deleteButton;
-    public Button menuButton;
-
     Scene returnScene;
 
     @Override
