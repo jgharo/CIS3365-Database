@@ -46,33 +46,54 @@ public class ClassroomController implements Initializable {
     private TextField class_room;
 
 
-    ObservableList<Classroom> oblist = FXCollections.observableArrayList();
+    Scene returnScene;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        ObservableList<Classroom> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            Classroom classroom = newval;
+            if (classroom != null) {
+                classroom_id.setText(classroom.getClassRoom_ID());
+                class_id.setText(classroom.getClass_ID());
+                class_room.setText(classroom.getClass_ID());
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setClassroomTable();
+        displayDatabase();
+
+    }
+
+    private void setClassroomTable() {
+        col_classroom_id.setCellValueFactory(new PropertyValueFactory<>("Adm_Acc_ID"));
+        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
+        col_class_room.setCellValueFactory(new PropertyValueFactory<>("Adm_User"));
+
+    }
+
+    private void displayDatabase() {
+        ObservableList<Classroom> classroomInfo = FXCollections.observableArrayList();
 
         try {
 
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt= con.prepareCall("{CALL class_select()}");
+            CallableStatement stmt = con.prepareCall("{CALL classroom_select()}");
 
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next()){
-                oblist.add(new Classroom(rs.getString("ClassRoom_ID"),rs.getString("Class_ID"),rs.getString("Class_Room")));
-
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                classroomInfo.add(new Classroom(rs.getString("classRoom_ID"), rs.getString("class_ID"), rs.getString("class_Room")));
             }
 
-        } catch (SQLException ex){
-            Logger.getLogger(ClassroomController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-
-        col_classroom_id.setCellValueFactory(new PropertyValueFactory<>("ClassRoom_ID"));
-        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
-        col_class_room.setCellValueFactory(new PropertyValueFactory<>("Class_Name"));
-
-        table.setItems(oblist);
-
+        table.setItems(classroomInfo);
     }
 
     @FXML
@@ -81,16 +102,24 @@ public class ClassroomController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL class_insert(?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL classroom_insert(?,?)}");
 
-            stmt.setString(1, this.class_id.getText());
-            stmt.setString(2, this.class_room.getText());
+            stmt.setString(1, class_id.getText());
+            stmt.setString(2, class_room.getText());
+
             stmt.execute();
+            setClassroomTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
-        }
-        catch (SQLException ex){
-            Logger.getLogger(ClassroomController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex){
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            class_id.setText("");
+            class_room.setText("");
         }
 
     }
@@ -101,17 +130,20 @@ public class ClassroomController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL class_delete(?)}");
+            CallableStatement stmt = con.prepareCall("{CALL classroom_delete(?)}");
 
-            stmt.setString(1, this.classroom_id.getText());
+            stmt.setString(1, classroom_id.getText());
 
             stmt.execute();
+            setClassroomTable();
+            displayDatabase();
             con.close();
-
-
         }
         catch (SQLException ex){
-            Logger.getLogger(ClassroomController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            classroom_id.setText("");
         }
 
     }
@@ -124,20 +156,33 @@ public class ClassroomController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL course_update(?,?,?)}");
 
-            stmt.setString(1, this.classroom_id.getText());
-            stmt.setString(2, this.class_id.getText());
-            stmt.setString(3, this.class_room.getText());
+            stmt.setString(1, classroom_id.getText());
+            stmt.setString(2, class_id.getText());
+            stmt.setString(3, class_room.getText());
 
-
-            stmt.execute();
+            stmt.executeUpdate();
+            setClassroomTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
-
 
         }
         catch (SQLException ex){
             Logger.getLogger(ClassroomController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            classroom_id.setText("");
+            class_id.setText("");
+            class_room.setText("");
         }
 
+    }
+
+    public void clearClassroom (ActionEvent actionEvent) {
+        classroom_id.setText("");
+        class_id.setText("");
+        class_room.setText("");
     }
 
     @SuppressWarnings("Duplicates")

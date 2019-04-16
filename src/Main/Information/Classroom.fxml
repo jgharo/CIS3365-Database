@@ -8,41 +8,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.ClassroomController">
+<AnchorPane prefHeight="691.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.ClassroomController">
     <children>
-        <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Classroom" underline="true">
+        <Text layoutX="173.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Classroom" underline="true">
             <font>
                 <Font size="20.0" />
             </font>
         </Text>
-        <Text fx:id="classID" layoutX="41.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Classroom_ID:">
+        <Text fx:id="classID" layoutX="85.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Classroom_ID:">
             <font>
                 <Font size="15.0" />
             </font>
         </Text>
-        <Text layoutX="330.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class_ID:">
+        <Text layoutX="117.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class_ID:">
             <font>
                 <Font size="15.0" />
             </font>
         </Text>
-        <Text layoutX="582.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class_Room:">
+        <Text layoutX="90.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Class_Room:">
             <font>
                 <Font size="15.0" />
             </font>
         </Text>
-        <TextField fx:id="classroom_id" layoutX="140.0" layoutY="504.0" />
-        <TextField fx:id="class_id" layoutX="413.0" layoutY="504.0" />
-        <TextField fx:id="class_room" layoutX="665.0" layoutY="504.0" />
-        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_Classroom" prefHeight="25.0" prefWidth="55.0" text="Add" />
-        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_Classroom" text="Update" />
-        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_Classroom" prefHeight="25.0" prefWidth="56.0" text="Delete" />
-        <TableView fx:id="table" layoutX="307.0" layoutY="77.0" prefHeight="396.0" prefWidth="312.0">
+        <TextField fx:id="classroom_id" layoutX="194.0" layoutY="514.0" />
+        <TextField fx:id="class_id" layoutX="194.0" layoutY="552.0" />
+        <TextField fx:id="class_room" layoutX="194.0" layoutY="587.0" />
+        <Button fx:id="addButton" layoutX="50.0" layoutY="633.0" mnemonicParsing="false" onAction="#add_Classroom" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="117.0" layoutY="633.0" mnemonicParsing="false" onAction="#update_Classroom" text="Update" />
+        <Button fx:id="deleteButton" layoutX="195.0" layoutY="633.0" mnemonicParsing="false" onAction="#delete_Classroom" prefHeight="27.0" prefWidth="63.0" text="Delete" />
+        <TableView fx:id="table" layoutX="67.0" layoutY="77.0" prefHeight="396.0" prefWidth="312.0">
             <columns>
                 <TableColumn fx:id="col_classroom_id" prefWidth="91.0" text="Classroom_ID" />
                 <TableColumn fx:id="col_class_id" prefWidth="91.0" text="Class_ID" />
                 <TableColumn fx:id="col_class_room" prefWidth="129.0" text="Class_Room" />
             </columns>
         </TableView>
-        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+        <Button fx:id="backButton" layoutX="347.0" layoutY="633.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+      <Button fx:id="btnClear" layoutX="270.0" layoutY="633.0" mnemonicParsing="false" onAction="#clearClassroom" prefHeight="27.0" prefWidth="63.0" text="Clear" />
     </children>
 </AnchorPane>
