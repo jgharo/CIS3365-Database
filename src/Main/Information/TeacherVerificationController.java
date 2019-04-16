@@ -44,10 +44,38 @@ public class TeacherVerificationController implements Initializable {
     private TextField teach_verify;
 
 
-    ObservableList<TeacherVerification> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<TeacherVerification> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            TeacherVerification stu = newval;
+            if (stu != null) {
+                adm_id.setText(stu.getAdm_ID());
+                teach_id.setText(stu.getTeach_ID());
+                teach_verify.setText(stu.getTeach_Verify());
+
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setTeacherVerTable();
+        displayDatabase();
+
+    }
+
+    private void setTeacherVerTable() {
+        col_adm_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
+        col_teach_id.setCellValueFactory(new PropertyValueFactory<>("Teach_ID"));
+        col_teach_verify.setCellValueFactory(new PropertyValueFactory<>("Teach_Verify"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<TeacherVerification> teacherverInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +85,7 @@ public class TeacherVerificationController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new TeacherVerification(rs.getString("Adm_ID"),rs.getString("Teach_ID"), rs.getString("Teach_Verify")));
+                teacherverInfo.add(new TeacherVerification(rs.getString("Adm_ID"),rs.getString("Teach_ID"), rs.getString("Teach_Verify")));
 
             }
 
@@ -65,11 +93,7 @@ public class TeacherVerificationController implements Initializable {
             Logger.getLogger(TeacherVerificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_adm_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
-        col_teach_id.setCellValueFactory(new PropertyValueFactory<>("Teach_ID"));
-        col_teach_verify.setCellValueFactory(new PropertyValueFactory<>("Teach_Verify"));
-
-        table.setItems(oblist);
+        table.setItems(teacherverInfo);
 
     }
 
@@ -85,11 +109,20 @@ public class TeacherVerificationController implements Initializable {
             stmt.setString(2, this.teach_id.getText());
             stmt.setString(3, this.teach_verify.getText());
             stmt.execute();
+            setTeacherVerTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(TeacherVerificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            adm_id.setText("");
+            teach_id.setText("");
+            teach_verify.setText("");
         }
 
     }
@@ -105,12 +138,19 @@ public class TeacherVerificationController implements Initializable {
             stmtstu.setString(1, this.teach_id.getText());
 
             stmtstu.execute();
+            setTeacherVerTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(TeacherVerificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            adm_id.setText("");
+            teach_id.setText("");
+            teach_verify.setText("");
         }
 
     }
@@ -128,6 +168,10 @@ public class TeacherVerificationController implements Initializable {
             stmt.setString(3, this.teach_verify.getText());
 
             stmt.execute();
+            setTeacherVerTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -136,8 +180,20 @@ public class TeacherVerificationController implements Initializable {
             Logger.getLogger(TeacherVerificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        finally{
+            adm_id.setText("");
+            teach_id.setText("");
+            teach_verify.setText("");
+        }
+
     }
 
+    @FXML
+    private void clear_TeacherVerification(ActionEvent actionEvent) {
+        adm_id.setText("");
+        teach_id.setText("");
+        teach_verify.setText("");
+    }
 
     @SuppressWarnings("Duplicates")
     public void backButtonPushed(ActionEvent event) throws IOException
@@ -148,4 +204,5 @@ public class TeacherVerificationController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
 }

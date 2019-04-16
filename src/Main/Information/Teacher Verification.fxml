@@ -44,5 +44,6 @@
                 <Font size="15.0" />
             </font>
         </Text>
+      <Button layoutX="832.0" layoutY="542.0" mnemonicParsing="false" onAction="#clear_TeacherVerification" text="Clear" />
     </children>
 </AnchorPane>
