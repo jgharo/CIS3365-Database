@@ -30,7 +30,7 @@ public class ParentRegistrationFormController implements Initializable {
     @FXML
     private TableView<ParentRegistrationForm> table;
     @FXML
-    private TableColumn<ParentRegistrationForm,String> col_preg_id;
+    private TableColumn<ParentRegistrationForm, String> col_preg_id;
     @FXML
     private TableColumn<ParentRegistrationForm, String> col_par_id;
     @FXML
@@ -44,10 +44,38 @@ public class ParentRegistrationFormController implements Initializable {
     private TextField preg_date;
 
 
-    ObservableList<ParentRegistrationForm> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<ParentRegistrationForm> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            ParentRegistrationForm stu = newval;
+            if (stu != null) {
+                preg_id.setText(stu.getPReg_ID());
+                par_id.setText(stu.getPar_ID());
+                preg_date.setText(stu.getPReg_Date());
+
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setParentRegTable();
+        displayDatabase();
+
+    }
+
+    private void setParentRegTable() {
+        col_preg_id.setCellValueFactory(new PropertyValueFactory<>("PReg_ID"));
+        col_par_id.setCellValueFactory(new PropertyValueFactory<>("Par_ID"));
+        col_preg_date.setCellValueFactory(new PropertyValueFactory<>("PReg_Date"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<ParentRegistrationForm> parentregInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +85,7 @@ public class ParentRegistrationFormController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new ParentRegistrationForm(rs.getString("PReg_ID"),rs.getString("Par_ID"), rs.getString("PReg_Date")));
+                parentregInfo.add(new ParentRegistrationForm(rs.getString("PReg_ID"),rs.getString("Par_ID"), rs.getString("PReg_Date")));
 
             }
 
@@ -65,11 +93,7 @@ public class ParentRegistrationFormController implements Initializable {
             Logger.getLogger(ParentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_preg_id.setCellValueFactory(new PropertyValueFactory<>("PReg_ID"));
-        col_par_id.setCellValueFactory(new PropertyValueFactory<>("Par_ID"));
-        col_preg_date.setCellValueFactory(new PropertyValueFactory<>("PReg_Date"));
-
-        table.setItems(oblist);
+        table.setItems(parentregInfo);
 
     }
 
@@ -84,11 +108,20 @@ public class ParentRegistrationFormController implements Initializable {
             stmt.setString(1, this.par_id.getText());
             stmt.setString(2, this.preg_date.getText());
             stmt.execute();
+            setParentRegTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(ParentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            preg_id.setText("");
+            par_id.setText("");
+            preg_date.setText("");
         }
 
     }
@@ -99,17 +132,24 @@ public class ParentRegistrationFormController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL parent_reg_delete(?)}");
+            CallableStatement stmtstu = con.prepareCall("{CALL parent_reg_delete(?)}");
 
-            stmt.setString(1, this.preg_id.getText());
+            stmtstu.setString(1, this.preg_id.getText());
 
-            stmt.execute();
+            stmtstu.execute();
+            setParentRegTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(ParentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            preg_id.setText("");
+            par_id.setText("");
+            preg_date.setText("");
         }
 
     }
@@ -127,6 +167,10 @@ public class ParentRegistrationFormController implements Initializable {
             stmt.setString(3, this.preg_date.getText());
 
             stmt.execute();
+            setParentRegTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -135,6 +179,19 @@ public class ParentRegistrationFormController implements Initializable {
             Logger.getLogger(ParentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        finally{
+            preg_id.setText("");
+            par_id.setText("");
+            preg_date.setText("");
+        }
+
+    }
+
+    @FXML
+    private void clear_ParentRegistrationForm(ActionEvent actionEvent) {
+        preg_id.setText("");
+        par_id.setText("");
+        preg_date.setText("");
     }
 
     @SuppressWarnings("Duplicates")
@@ -146,4 +203,5 @@ public class ParentRegistrationFormController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
 }

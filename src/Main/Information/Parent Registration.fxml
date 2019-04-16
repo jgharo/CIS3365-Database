@@ -43,5 +43,6 @@
                 <Font size="15.0" />
             </font>
         </Text>
+      <Button layoutX="837.0" layoutY="542.0" mnemonicParsing="false" onAction="#clear_ParentRegistrationForm" text="Clear" />
     </children>
 </AnchorPane>
