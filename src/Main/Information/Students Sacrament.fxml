@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="624.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Information.StudentSacramentController">
+    <children>
+        <Text layoutX="384.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Students Sacrament" underline="true">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="70.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sac_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="314.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stu_ID:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <TextField fx:id="sac_id" layoutX="140.0" layoutY="504.0" />
+        <TextField fx:id="stu_id" layoutX="374.0" layoutY="504.0" />
+        <Button fx:id="addButton" layoutX="619.0" layoutY="542.0" mnemonicParsing="false" onAction="#add_StudentSacrament" prefHeight="25.0" prefWidth="55.0" text="Add" />
+        <Button fx:id="updateButton" layoutX="692.0" layoutY="542.0" mnemonicParsing="false" onAction="#update_StudentSacrament" text="Update" />
+        <Button fx:id="deleteButton" layoutX="762.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete_StudentSacrament" prefHeight="25.0" prefWidth="56.0" text="Delete" />
+        <TableView fx:id="table" layoutX="278.0" layoutY="69.0" prefHeight="396.0" prefWidth="283.0">
+            <columns>
+                <TableColumn fx:id="col_sac_id" prefWidth="59.0" text="Sac_ID" />
+                <TableColumn fx:id="col_stu_id" prefWidth="111.0" text="Stu_ID" />
+            <TableColumn fx:id="col_sac_date" prefWidth="111.0" text="Sac_Date" />
+            </columns>
+        </TableView>
+        <Button fx:id="backButton" layoutX="863.0" layoutY="502.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+        <Button layoutX="837.0" layoutY="542.0" mnemonicParsing="false" onAction="#clear_StudentSacramentForm" text="Clear" />
+      <TextField fx:id="sac_date" layoutX="169.0" layoutY="555.0" />
+      <Text layoutX="70.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sac_Date:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>

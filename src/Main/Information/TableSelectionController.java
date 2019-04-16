@@ -25,7 +25,7 @@ public class TableSelectionController implements Initializable
     private String[] tables = new String[]{"Master Admins", "Master Admin Account", "Admin",
             "Admin Account", "Admin Registration", "Attendance Check", "Attendance Record", "Classes",
             "Class Language", "Classroom", "Courses", "Parents",
-            "Parents Registration", "Parents Transactions", "Sacraments", "Students", "Student Registration",
+            "Parents Registration", "Parents Transactions", "Sacraments", "Students", "Students Sacrament","Student Registration",
             "Student Transactions", "Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
             "Parents Transaction History", "Student Transaction History", "Student Verification",
             "Teacher Verification", "Admin Verification"};
