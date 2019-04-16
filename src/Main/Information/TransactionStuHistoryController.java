@@ -30,7 +30,7 @@ public class TransactionStuHistoryController implements Initializable {
     @FXML
     private TableView<TransactionStuHistory> table;
     @FXML
-    private TableColumn<TransactionStuHistory,String> col_trans_stu_hist_id;
+    private TableColumn<TransactionStuHistory, String> col_trans_stu_hist_id;
     @FXML
     private TableColumn<TransactionStuHistory, String> col_trans_stu_id;
     @FXML
@@ -43,11 +43,38 @@ public class TransactionStuHistoryController implements Initializable {
     @FXML
     private TextField trans_date;
 
-
-    ObservableList<TransactionStuHistory> oblist = FXCollections.observableArrayList();
+    Scene returnScene;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+
+        ObservableList<TransactionStuHistory> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable, oldval, newval) -> {
+            TransactionStuHistory admin = newval;
+            if (admin != null) {
+                trans_stu_hist_id.setText(admin.getTrans_Stu_Hist_ID());
+                trans_stu_id.setText(admin.getTrans_Stu_ID());
+                trans_date.setText(admin.getTrans_Date());
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setTransactionStuHistoryTable();
+        displayDatabase();
+    }
+
+    private void setTransactionStuHistoryTable() {
+
+        col_trans_stu_hist_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Stu_Hist_ID"));
+        col_trans_stu_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Stu_ID"));
+        col_trans_date.setCellValueFactory(new PropertyValueFactory<>("Trans_Date"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<TransactionStuHistory> transstuhistInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +84,7 @@ public class TransactionStuHistoryController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new TransactionStuHistory(rs.getString("Trans_Stu_Hist_ID"),rs.getString("Trans_Stu_ID"), rs.getString("Trans_Date")));
+                transstuhistInfo.add(new TransactionStuHistory(rs.getString("Trans_Stu_Hist_ID"),rs.getString("Trans_Stu_ID"), rs.getString("Trans_Date")));
 
             }
 
@@ -65,12 +92,7 @@ public class TransactionStuHistoryController implements Initializable {
             Logger.getLogger(TransactionStuHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_trans_stu_hist_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Stu_Hist_ID"));
-        col_trans_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
-        col_trans_date.setCellValueFactory(new PropertyValueFactory<>("Trans_Date"));
-
-
-        table.setItems(oblist);
+        table.setItems(transstuhistInfo);
 
     }
 
@@ -86,11 +108,20 @@ public class TransactionStuHistoryController implements Initializable {
             stmt.setString(2, this.trans_date.getText());
 
             stmt.execute();
+            setTransactionStuHistoryTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(TransactionStuHistoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            trans_stu_hist_id.setText("");
+            trans_stu_id.setText("");
+            trans_date.setText("");
         }
 
     }
@@ -101,17 +132,23 @@ public class TransactionStuHistoryController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL stu_transaction_delete(?)}");
+            CallableStatement stmt = con.prepareCall("{CALL trans_stu_hist_delete(?)}");
 
             stmt.setString(1, this.trans_stu_hist_id.getText());
 
             stmt.execute();
+            setTransactionStuHistoryTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(TransactionStuHistoryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            trans_stu_hist_id.setText("");
+
         }
 
     }
@@ -122,12 +159,16 @@ public class TransactionStuHistoryController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL trans_hist_stu_update(?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL trans_stu_hist_update(?,?,?)}");
 
             stmt.setString(1, this.trans_stu_hist_id.getText());
             stmt.setString(2, this.trans_stu_id.getText());
             stmt.setString(3, this.trans_date.getText());
             stmt.execute();
+            setTransactionStuHistoryTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -135,8 +176,20 @@ public class TransactionStuHistoryController implements Initializable {
         catch (SQLException ex){
             Logger.getLogger(TransactionStuHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally {
+            trans_stu_hist_id.setText("");
+            trans_stu_id.setText("");
+            trans_date.setText("");
+        }
 
     }
+
+    public void clearTransactionStuHistory (ActionEvent actionEvent) {
+        trans_stu_hist_id.setText("");
+        trans_stu_id.setText("");
+        trans_date.setText("");
+    }
+
 
     @SuppressWarnings("Duplicates")
     public void backButtonPushed(ActionEvent event) throws IOException
@@ -147,5 +200,4 @@ public class TransactionStuHistoryController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
 }
