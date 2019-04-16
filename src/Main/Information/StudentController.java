@@ -81,32 +81,37 @@ public class StudentController implements Initializable {
     @FXML
     private TextField stu_abs;
 
-    ObservableList<Student> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-
-        try {
-
-            Connection con = DBconnect.getConnection();
-
-            CallableStatement stmtstu= con.prepareCall("{CALL student_select()}");
-
-            ResultSet rs= stmtstu.executeQuery();
-            while (rs.next()){
-                oblist.add(new Student(rs.getString("Stu_ID"),rs.getString("Par_ID"),rs.getString("Class_ID"),rs.getString("Course_ID"),
-                        rs.getString("Stu_FName"), rs.getString("Stu_LName"), rs.getString("Stu_DOB"),rs.getString("Stu_Email"),rs.getString("Stu_Phone"),
-                        rs.getString("Stu_Address"), rs.getString("Stu_Lang"), rs.getString("Stu_Abs"), rs.getString("Date_Mod")));
-
-
-
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Student> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            Student stu = newval;
+            if (stu != null) {
+                stu_id.setText(stu.getStu_ID());
+                par_id.setText(stu.getPar_ID());
+                class_id.setText(stu.getClass_ID());
+                course_id.setText(stu.getCourse_ID());
+                stu_fname.setText(stu.getStu_FName());
+                stu_lname.setText(stu.getStu_LName());
+                stu_dob.setText(stu.getStu_DOB());
+                stu_email.setText(stu.getStu_Email());
+                stu_phone.setText(stu.getStu_Phone());
+                stu_address.setText(stu.getStu_Address());
+                stu_lang.setText(stu.getStu_Lang());
+                stu_abs.setText(stu.getStu_Abs());
+                table.refresh();
             }
+        });
+        table.getSelectionModel().clearSelection();
 
-        } catch (SQLException ex){
-            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        setStudentTable();
+        displayDatabase();
 
+    }
 
+    private void setStudentTable() {
         col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
         col_par_id.setCellValueFactory(new PropertyValueFactory<>("Par_ID"));
         col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
@@ -119,10 +124,30 @@ public class StudentController implements Initializable {
         col_stu_address.setCellValueFactory(new PropertyValueFactory<>("Stu_Address"));
         col_stu_lang.setCellValueFactory(new PropertyValueFactory<>("Stu_Lang"));
         col_stu_abs.setCellValueFactory(new PropertyValueFactory<>("Stu_Abs"));
-        col_date_mod.setCellValueFactory(new PropertyValueFactory<>("Date_Mod"));
+    }
 
-        table.setItems(oblist);
 
+    private void displayDatabase() {
+
+        ObservableList<Student> studentInfo = FXCollections.observableArrayList();
+        try {
+
+            Connection con = DBconnect.getConnection();
+
+            CallableStatement stmtstu = con.prepareCall("{CALL student_select()}");
+
+            ResultSet rs = stmtstu.executeQuery();
+            while (rs.next()) {
+                studentInfo.add(new Student(rs.getString("Stu_ID"), rs.getString("Par_ID"), rs.getString("Class_ID"), rs.getString("Course_ID"),
+                        rs.getString("Stu_FName"), rs.getString("Stu_LName"), rs.getString("Stu_DOB"), rs.getString("Stu_Email"), rs.getString("Stu_Phone"),
+                        rs.getString("Stu_Address"), rs.getString("Stu_Lang"), rs.getString("Stu_Abs"), rs.getString("Date_Mod")));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        table.setItems(studentInfo);
     }
 
     @FXML
@@ -131,24 +156,46 @@ public class StudentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmtstu = con.prepareCall("{CALL student_insert(?,?,?,?,?,?,?,?)}");
+            CallableStatement stmtstu = con.prepareCall("{CALL student_insert(?,?,?,?,?,?,?,?,?,?,?)}");
 
-            stmtstu.setString(1, this.stu_fname.getText());
-            stmtstu.setString(2, this.stu_lname.getText());
-            stmtstu.setString(3, this.stu_dob.getText());
-            stmtstu.setString(4, this.stu_email.getText());
-            stmtstu.setString(5, this.stu_phone.getText());
-            stmtstu.setString(6, this.stu_address.getText());
-            stmtstu.setString(7, this.stu_lang.getText());
-            stmtstu.setString(8, this.stu_abs.getText());
+            stmtstu.setString(1, this.par_id.getText());
+            stmtstu.setString(2, this.class_id.getText());
+            stmtstu.setString(3, this.course_id.getText());
+            stmtstu.setString(4, this.stu_fname.getText());
+            stmtstu.setString(5, this.stu_lname.getText());
+            stmtstu.setString(6, this.stu_dob.getText());
+            stmtstu.setString(7, this.stu_email.getText());
+            stmtstu.setString(8, this.stu_phone.getText());
+            stmtstu.setString(9, this.stu_address.getText());
+            stmtstu.setString(10, this.stu_lang.getText());
+            stmtstu.setString(11, this.stu_abs.getText());
 
             stmtstu.execute();
+            setStudentTable();
+            displayDatabase();;
+            table.getSelectionModel().clearSelection();
+            table.refresh();;
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+
+            stu_id.setText("");
+            par_id.setText("");
+            class_id.setText("");
+            course_id.setText("");
+            stu_fname.setText("");
+            stu_lname.setText("");
+            stu_dob.setText("");
+            stu_email.setText("");
+            stu_phone.setText("");
+            stu_address.setText("");
+            stu_lang.setText("");
+            stu_abs.setText("");
+
         }
 
     }
@@ -163,13 +210,29 @@ public class StudentController implements Initializable {
 
             stmtstu.setString(1, this.stu_id.getText());
 
+
             stmtstu.execute();
+            setStudentTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            stu_id.setText("");
+            par_id.setText("");
+            class_id.setText("");
+            course_id.setText("");
+            stu_fname.setText("");
+            stu_lname.setText("");
+            stu_dob.setText("");
+            stu_email.setText("");
+            stu_phone.setText("");
+            stu_address.setText("");
+            stu_lang.setText("");
+            stu_abs.setText("");
         }
 
     }
@@ -197,6 +260,10 @@ public class StudentController implements Initializable {
 
 
             stmtstu.execute();
+            setStudentTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -204,6 +271,38 @@ public class StudentController implements Initializable {
         catch (SQLException ex){
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+            finally{
+            stu_id.setText("");
+            par_id.setText("");
+            class_id.setText("");
+            course_id.setText("");
+            stu_fname.setText("");
+            stu_lname.setText("");
+            stu_dob.setText("");
+            stu_email.setText("");
+            stu_phone.setText("");
+            stu_address.setText("");
+            stu_lang.setText("");
+            stu_abs.setText("");
+        }
+
+
+    }
+
+    @FXML
+    private void clear_Student(ActionEvent actionEvent){
+        stu_id.setText("");
+        par_id.setText("");
+        class_id.setText("");
+        course_id.setText("");
+        stu_fname.setText("");
+        stu_lname.setText("");
+        stu_dob.setText("");
+        stu_email.setText("");
+        stu_phone.setText("");
+        stu_address.setText("");
+        stu_lang.setText("");
+        stu_abs.setText("");
 
     }
 
