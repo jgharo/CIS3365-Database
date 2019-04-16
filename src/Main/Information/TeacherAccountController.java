@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -47,35 +48,55 @@ public class TeacherAccountController implements Initializable {
     @FXML
     private TextField teach_pass;
 
-
-    ObservableList<TeacherAccount> oblist = FXCollections.observableArrayList();
+    Scene returnScene;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
+        ObservableList<TeacherAccount> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            TeacherAccount admin = newval;
+            if (admin != null) {
+                teach_acc_id.setText(admin.getTeach_Acc_ID());
+                teach_id.setText(admin.getTeach_ID());
+                teach_user.setText(admin.getTeach_User());
+                teach_pass.setText(admin.getTeach_Pass());
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setTeacherAccountTable();
+        displayDatabase();
+    }
+
+    private void setTeacherAccountTable() {
+        col_teach_acc_id.setCellValueFactory(new PropertyValueFactory<>("Teach_Acc_ID"));
+        col_teach_id.setCellValueFactory(new PropertyValueFactory<>("Teach_ID"));
+        col_teach_user.setCellValueFactory(new PropertyValueFactory<>("Teach_User"));
+        col_teach_pass.setCellValueFactory(new PropertyValueFactory<>("Teach_Pass"));
+    }
+
+    private void displayDatabase() {
+        ObservableList<TeacherAccount> teachaccInfo = FXCollections.observableArrayList();
 
         try {
 
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt= con.prepareCall("{CALL teacher_account_select()}");
+            CallableStatement stmtAdmin = con.prepareCall("{CALL teacher_account_select()}");
 
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next()){
-                oblist.add(new TeacherAccount(rs.getString("Teach_Acc_ID"),rs.getString("Teach_ID"), rs.getString("Teach_User"), rs.getString("Teach_Pass")));
-
+            ResultSet rs = stmtAdmin.executeQuery();
+            while (rs.next()) {
+                teachaccInfo.add(new TeacherAccount(rs.getString("Teach_Acc_ID"), rs.getString("Teach_ID"), rs.getString("Teach_User"),
+                        rs.getString("Teach_Pass")));
             }
 
-        } catch (SQLException ex){
-            Logger.getLogger(TeacherAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-
-        col_teach_acc_id.setCellValueFactory(new PropertyValueFactory<>("Teach_Acc_ID"));
-        col_teach_id.setCellValueFactory(new PropertyValueFactory<>("Teach_ID"));
-        col_teach_user.setCellValueFactory(new PropertyValueFactory<>("Teach_User"));
-        col_teach_pass.setCellValueFactory(new PropertyValueFactory<>("Teach_Pass"));
-
-        table.setItems(oblist);
-
+        table.setItems(teachaccInfo);
     }
 
     @FXML
@@ -86,17 +107,25 @@ public class TeacherAccountController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL teacher_account_insert(?,?,?)}");
 
-            stmt.setString(1, this.teach_id.getText());
-            stmt.setString(2, this.teach_user.getText());
-            stmt.setString(3, this.teach_pass.getText());
+            stmt.setString(1, teach_id.getText());
+            stmt.setString(2, teach_user.getText());
+            stmt.setString(3, teach_pass.getText());
+
             stmt.execute();
+            setTeacherAccountTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex){
             Logger.getLogger(TeacherAccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+        } finally {
+            teach_id.setText("");
+            teach_user.setText("");
+            teach_pass.setText("");
+        }
     }
 
     @FXML
@@ -107,15 +136,18 @@ public class TeacherAccountController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL teacher_account_delete(?)}");
 
-            stmt.setString(1, this.teach_acc_id.getText());
+            stmt.setString(1, teach_acc_id.getText());
 
             stmt.execute();
+            setTeacherAccountTable();
+            displayDatabase();
             con.close();
-
-
         }
         catch (SQLException ex){
             Logger.getLogger(TeacherAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+           teach_acc_id.setText("");
         }
 
     }
@@ -128,20 +160,36 @@ public class TeacherAccountController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL teacher_account_update(?,?,?,?)}");
 
-            stmt.setString(1, this.teach_acc_id.getText());
-            stmt.setString(2, this.teach_id.getText());
-            stmt.setString(3, this.teach_user.getText());
-            stmt.setString(4, this.teach_pass.getText());
+            stmt.setString(1, teach_acc_id.getText());
+            stmt.setString(2, teach_id.getText());
+            stmt.setString(3, teach_user.getText());
+            stmt.setString(4, teach_pass.getText());
 
-            stmt.execute();
+            stmt.executeUpdate();
+            setTeacherAccountTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
-
 
         }
         catch (SQLException ex){
             Logger.getLogger(TeacherAccountController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            teach_acc_id.setText("");
+            teach_id.setText("");
+            teach_user.setText("");
+            teach_pass.setText("");
         }
 
+    }
+
+    public void clearTeacherAccount (ActionEvent actionEvent) {
+        teach_acc_id.setText("");
+        teach_id.setText("");
+        teach_user.setText("");
+        teach_pass.setText("");
     }
 
     @SuppressWarnings("Duplicates")
@@ -153,5 +201,4 @@ public class TeacherAccountController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
 }
