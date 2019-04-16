@@ -43,12 +43,38 @@ public class CourseController implements Initializable {
     @FXML
     private TextField course_name;
 
+
     Scene returnScene;
-
-    ObservableList<Course> oblist = FXCollections.observableArrayList();
-
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Course> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            Course cou = newval;
+            if (cou != null) {
+                course_id.setText(cou.getCourse_ID());
+                course_sac.setText(cou.getCourse_Sac());
+                course_name.setText(cou.getCourse_Name());
+                table.refresh();
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setCourseTable();
+        displayDatabase();
+
+    }
+
+    private void setCourseTable(){
+        col_course_id.setCellValueFactory(new PropertyValueFactory<>("Course_ID"));
+        col_course_sac.setCellValueFactory(new PropertyValueFactory<>("Course_Sac"));
+        col_course_name.setCellValueFactory(new PropertyValueFactory<>("Course_Name"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<Course> courseInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -58,7 +84,7 @@ public class CourseController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new Course(rs.getString("Course_ID"),rs.getString("Course_Sac"),rs.getString("Course_Name")));
+                courseInfo.add(new Course(rs.getString("Course_ID"),rs.getString("Course_Sac"),rs.getString("Course_Name")));
 
             }
 
@@ -66,11 +92,7 @@ public class CourseController implements Initializable {
             Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_course_id.setCellValueFactory(new PropertyValueFactory<>("Course_ID"));
-        col_course_sac.setCellValueFactory(new PropertyValueFactory<>("Course_Sac"));
-        col_course_name.setCellValueFactory(new PropertyValueFactory<>("Course_Name"));
-
-        table.setItems(oblist);
+        table.setItems(courseInfo);
 
     }
 
@@ -85,11 +107,21 @@ public class CourseController implements Initializable {
             stmt.setString(1, this.course_sac.getText());
             stmt.setString(2, this.course_name.getText());
             stmt.execute();
+            setCourseTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         finally{
+            course_id.setText("");
+            course_sac.setText("");
+            course_name.setText("");
+
         }
 
     }
@@ -104,13 +136,23 @@ public class CourseController implements Initializable {
 
             stmt.setString(1, this.course_id.getText());
 
+
+
             stmt.execute();
+            setCourseTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            course_id.setText("");
+            course_sac.setText("");
+            course_name.setText("");
+
         }
 
     }
@@ -129,6 +171,10 @@ public class CourseController implements Initializable {
 
 
             stmt.execute();
+            setCourseTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -136,6 +182,21 @@ public class CourseController implements Initializable {
         catch (SQLException ex){
             Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            course_id.setText("");
+            course_sac.setText("");
+            course_name.setText("");
+
+        }
+
+    }
+
+    @FXML
+    private void clear_Course(ActionEvent actionEvent){
+        course_id.setText("");
+        course_sac.setText("");
+        course_name.setText("");
+
 
     }
 

@@ -1,34 +1,28 @@
-/**package Information;
+package Information;
 
 public class Parent {
     String Par_ID, Fath_FName, Fath_LName, Fath_DOB, Fath_Email, Fath_Phone, Fath_Address, Fath_Lang,
     Moth_FName, Moth_LName, Moth_DOB, Moth_Email, Moth_Phone, Moth_Address, Moth_Lang, Par_Marital, Amt_Stu;
 
-   public Parent(String Par_ID, String Fath_FName, String Fath_LName, String Fath_DOB, String Fath_Email, String Fath_Phone, String Fath_Address, String Fath_Lang,
-                 String  Moth_FName, String Moth_LName, String Moth_DOB, String Moth_Email, String Moth_Phone, String Moth_Address, String Moth_Lang, String Par_Marital,String Amt_Stu){
-
-       this.Par_ID=Par_ID;
-       this.Fath_FName=Fath_FName;
-       this.Fath_LName=Fath_LName;
-       this.Fath_DOB=Fath_DOB;
-       this.Fath_Email=Fath_Email;
-       this.Fath_Phone=Fath_Phone;
-       this.Fath_Address=Fath_Address;
-       this.Fath_Lang=Fath_Lang;
-
-       this.Moth_FName=Moth_FName;
-       this.Moth_LName=Moth_LName;
-       this.Moth_DOB=Moth_DOB;
-       this.Moth_Email=Moth_Email;
-       this.Moth_Phone=Moth_Phone;
-       this.Moth_Address=Moth_Address;
-       this.Moth_Lang=Moth_Lang;
-
-       this.Par_Marital=Par_Marital;
-       this.Amt_Stu=Amt_Stu;
-
-
-   }
+    public Parent(String par_ID, String fath_FName, String fath_LName, String fath_DOB, String fath_Email, String fath_Phone, String fath_Address, String fath_Lang, String moth_FName, String moth_LName, String moth_DOB, String moth_Email, String moth_Phone, String moth_Address, String moth_Lang, String par_Marital, String amt_Stu) {
+        Par_ID = par_ID;
+        Fath_FName = fath_FName;
+        Fath_LName = fath_LName;
+        Fath_DOB = fath_DOB;
+        Fath_Email = fath_Email;
+        Fath_Phone = fath_Phone;
+        Fath_Address = fath_Address;
+        Fath_Lang = fath_Lang;
+        Moth_FName = moth_FName;
+        Moth_LName = moth_LName;
+        Moth_DOB = moth_DOB;
+        Moth_Email = moth_Email;
+        Moth_Phone = moth_Phone;
+        Moth_Address = moth_Address;
+        Moth_Lang = moth_Lang;
+        Par_Marital = par_Marital;
+        Amt_Stu = amt_Stu;
+    }
 
     public String getPar_ID() {
         return Par_ID;
@@ -167,4 +161,3 @@ public class Parent {
     }
 }
 
-*/

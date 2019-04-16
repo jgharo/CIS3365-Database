@@ -172,9 +172,9 @@ public class StudentController implements Initializable {
 
             stmtstu.execute();
             setStudentTable();
-            displayDatabase();;
+            displayDatabase();
             table.getSelectionModel().clearSelection();
-            table.refresh();;
+            table.refresh();
             con.close();
 
 

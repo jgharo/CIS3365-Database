@@ -115,7 +115,7 @@ public class ParentController implements Initializable {
 
             Parent parent = newval;
             if (parent != null) {
-                this.par_id.setText(parent.getPar_ID());
+                par_id.setText(parent.getPar_ID());
                 fath_fname.setText(parent.getFath_FName());
                 fath_lname.setText(parent.getFath_LName());
                 fath_dob.setText(parent.getFath_DOB());
@@ -374,5 +374,4 @@ public class ParentController implements Initializable {
     }
 
 
-}
-*/
+}*/
