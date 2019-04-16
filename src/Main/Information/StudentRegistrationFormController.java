@@ -30,7 +30,7 @@ public class StudentRegistrationFormController implements Initializable {
     @FXML
     private TableView<StudentRegistrationForm> table;
     @FXML
-    private TableColumn<StudentRegistrationForm,String> col_sreg_id;
+    private TableColumn<StudentRegistrationForm, String> col_sreg_id;
     @FXML
     private TableColumn<StudentRegistrationForm, String> col_stu_id;
     @FXML
@@ -44,10 +44,38 @@ public class StudentRegistrationFormController implements Initializable {
     private TextField sreg_date;
 
 
-    ObservableList<StudentRegistrationForm> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<StudentRegistrationForm> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            StudentRegistrationForm stu = newval;
+            if (stu != null) {
+                sreg_id.setText(stu.getSReg_ID());
+                stu_id.setText(stu.getStu_ID());
+                sreg_date.setText(stu.getSReg_Date());
+
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setStudentRegTable();
+        displayDatabase();
+
+    }
+
+    private void setStudentRegTable() {
+        col_sreg_id.setCellValueFactory(new PropertyValueFactory<>("SReg_ID"));
+        col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
+        col_sreg_date.setCellValueFactory(new PropertyValueFactory<>("SReg_Date"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<StudentRegistrationForm> studentregInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +85,7 @@ public class StudentRegistrationFormController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new StudentRegistrationForm(rs.getString("SReg_ID"),rs.getString("Stu_ID"), rs.getString("SReg_Date")));
+                studentregInfo.add(new StudentRegistrationForm(rs.getString("SReg_ID"),rs.getString("Stu_ID"), rs.getString("SReg_Date")));
 
             }
 
@@ -65,11 +93,7 @@ public class StudentRegistrationFormController implements Initializable {
             Logger.getLogger(StudentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_sreg_id.setCellValueFactory(new PropertyValueFactory<>("SReg_ID"));
-        col_stu_id.setCellValueFactory(new PropertyValueFactory<>("Stu_ID"));
-        col_sreg_date.setCellValueFactory(new PropertyValueFactory<>("SReg_Date"));
-
-        table.setItems(oblist);
+        table.setItems(studentregInfo);
 
     }
 
@@ -84,11 +108,20 @@ public class StudentRegistrationFormController implements Initializable {
             stmt.setString(1, this.stu_id.getText());
             stmt.setString(2, this.sreg_date.getText());
             stmt.execute();
+            setStudentRegTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            sreg_id.setText("");
+            stu_id.setText("");
+            sreg_date.setText("");
         }
 
     }
@@ -104,12 +137,19 @@ public class StudentRegistrationFormController implements Initializable {
             stmtstu.setString(1, this.sreg_id.getText());
 
             stmtstu.execute();
+            setStudentRegTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(StudentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            sreg_id.setText("");
+            stu_id.setText("");
+            sreg_date.setText("");
         }
 
     }
@@ -127,6 +167,10 @@ public class StudentRegistrationFormController implements Initializable {
             stmt.setString(3, this.sreg_date.getText());
 
             stmt.execute();
+            setStudentRegTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -135,6 +179,19 @@ public class StudentRegistrationFormController implements Initializable {
             Logger.getLogger(StudentRegistrationFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        finally{
+            sreg_id.setText("");
+            stu_id.setText("");
+            sreg_date.setText("");
+        }
+
+    }
+
+    @FXML
+    private void clear_StudentRegistrationForm(ActionEvent actionEvent) {
+        sreg_id.setText("");
+        stu_id.setText("");
+        sreg_date.setText("");
     }
 
     @SuppressWarnings("Duplicates")
