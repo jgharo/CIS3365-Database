@@ -23,7 +23,7 @@ public class TableSelectionController implements Initializable
     @FXML ComboBox<String> tableSelectionBox;
 
     private String[] tables = new String[]{"Master Admins", "Master Admin Account", "Admin",
-            "Admin Account", "Admin Registration", "Attendance Check", "Attendance Record", "Classes",
+            "Admin Account", "Admin Registration", "Attendance Check History", "Attendance Record", "Classes",
             "Class Language", "Classroom", "Courses", "Parents",
             "Parents Registration", "Parents Transactions", "Sacraments", "Students", "Students Sacrament","Student Registration",
             "Student Transactions", "Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
