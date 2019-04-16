@@ -42,8 +42,10 @@
       <TextField fx:id="fath_email" layoutX="816.0" layoutY="456.0" />
       <Label layoutX="745.0" layoutY="505.0" text="Phone:" />
       <TextField fx:id="fath_phone" layoutX="815.0" layoutY="491.0" />
-      <Label layoutX="739.0" layoutY="540.0" text="Address:" />
+      <Label layoutX="739.0" layoutY="530.0" text="Address:" />
       <TextField fx:id="fath_address" layoutX="816.0" layoutY="526.0" />
+      <Label layoutX="739.0" layoutY="565.0" text="Language:" />
+      <TextField fx:id="fath_lang" layoutX="815.0" layoutY="560.0" />
       <Label layoutX="1464.0" layoutY="366.0" text="First Name:" />
       <TextField fx:id="moth_fname" layoutX="1546.0" layoutY="361.0" />
       <Label layoutX="1464.0" layoutY="399.0" text="Last Name:" />
@@ -55,7 +57,9 @@
       <Label layoutX="1476.0" layoutY="511.0" text="Phone:" />
       <TextField fx:id="moth_phone" layoutX="1547.0" layoutY="497.0" />
       <Label layoutX="1476.0" layoutY="543.0" text="Address:" />
-      <TextField fx:id="moth_address" layoutX="1547.0" layoutY="529.0" />
+      <TextField fx:id="moth_address" layoutX="1546.0" layoutY="538.0" />
+      <Label layoutX="1476.0" layoutY="578.0" text="Language:" />
+      <TextField fx:id="moth_lang" layoutX="1546.0" layoutY="573.0" />
       <Button layoutX="1099.0" layoutY="586.0" mnemonicParsing="false" onAction="#add_Parent" text="Add" />
       <Button layoutX="1135.0" layoutY="634.0" mnemonicParsing="false" onAction="#clearParent" text="Clear" />
       <Button layoutX="1222.0" layoutY="634.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
