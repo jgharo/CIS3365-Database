@@ -57,7 +57,7 @@ public class ClassroomController implements Initializable {
             if (classroom != null) {
                 classroom_id.setText(classroom.getClassRoom_ID());
                 class_id.setText(classroom.getClass_ID());
-                class_room.setText(classroom.getClass_ID());
+                class_room.setText(classroom.getClass_Room());
 
             }
         });
@@ -69,9 +69,9 @@ public class ClassroomController implements Initializable {
     }
 
     private void setClassroomTable() {
-        col_classroom_id.setCellValueFactory(new PropertyValueFactory<>("Adm_Acc_ID"));
-        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
-        col_class_room.setCellValueFactory(new PropertyValueFactory<>("Adm_User"));
+        col_classroom_id.setCellValueFactory(new PropertyValueFactory<>("ClassRoom_ID"));
+        col_class_id.setCellValueFactory(new PropertyValueFactory<>("Class_ID"));
+        col_class_room.setCellValueFactory(new PropertyValueFactory<>("Class_Room"));
 
     }
 
@@ -96,8 +96,7 @@ public class ClassroomController implements Initializable {
         table.setItems(classroomInfo);
     }
 
-    @FXML
-    private void add_Classroom(ActionEvent event){
+    public void add_Classroom(ActionEvent event){
 
         try {
             Connection con = DBconnect.getConnection();
@@ -124,8 +123,7 @@ public class ClassroomController implements Initializable {
 
     }
 
-    @FXML
-    private void delete_Classroom(ActionEvent event){
+    public void delete_Classroom(ActionEvent event){
 
         try {
             Connection con = DBconnect.getConnection();
@@ -144,17 +142,18 @@ public class ClassroomController implements Initializable {
 
         } finally {
             classroom_id.setText("");
+            class_id.setText("");
+            class_room.setText("");
         }
 
     }
 
-    @FXML
-    private void update_Classroom(ActionEvent event){
+    public void update_Classroom(ActionEvent event){
 
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL course_update(?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL classroom_update(?,?,?)}");
 
             stmt.setString(1, classroom_id.getText());
             stmt.setString(2, class_id.getText());
