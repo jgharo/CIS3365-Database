@@ -9,96 +9,77 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="2245.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="841.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parent Information" underline="true">
+      <Text layoutX="1037.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parent Information" underline="true">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TableView fx:id="table1" layoutX="703.0" layoutY="62.0" prefHeight="200.0" prefWidth="452.0">
-        <columns>
-          <TableColumn fx:id="col_par_id" prefWidth="57.0" text="ID" />
-          <TableColumn fx:id="col_par_marital" prefWidth="146.0" text="Marital Status" />
-            <TableColumn fx:id="col_amt_stu" prefWidth="140.0" text="Amount of Student(s)" />
-            <TableColumn fx:id="col_date_mod" prefWidth="108.0" text="Date Modified" />
-        </columns>
-      </TableView>
-      <TableView fx:id="table2" layoutX="328.0" layoutY="300.0" prefHeight="200.0" prefWidth="885.0">
+      <Text layoutX="1393.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mother Information" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="655.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Father Information" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Label layoutX="997.0" layoutY="396.0" text="ID:" />
+      <TextField fx:id="par_id" layoutX="1085.0" layoutY="391.0" />
+      <Label layoutX="960.0" layoutY="446.0" text="Marital Status:" />
+      <TextField fx:id="par_marital" layoutX="1084.0" layoutY="441.0" />
+      <Label layoutX="936.0" layoutY="496.0" text="Amount of Student(s):" />
+      <TextField fx:id="amt_stu" layoutX="1084.0" layoutY="491.0" />
+      <Label layoutX="620.0" layoutY="351.0" text="First Name:" />
+      <TextField fx:id="fath_fname" layoutX="701.0" layoutY="346.0" />
+      <Label layoutX="620.0" layoutY="388.0" text="Last Name:" />
+      <TextField fx:id="fath_lname" layoutX="701.0" layoutY="383.0" />
+      <Label layoutX="638.0" layoutY="433.0" prefHeight="17.0" prefWidth="39.0" text="DOB:" />
+      <TextField fx:id="fath_dob" layoutX="700.0" layoutY="419.0" />
+      <Label layoutX="633.0" layoutY="468.0" text="Email:" />
+      <TextField fx:id="fath_email" layoutX="701.0" layoutY="454.0" />
+      <Label layoutX="630.0" layoutY="503.0" text="Phone:" />
+      <TextField fx:id="fath_phone" layoutX="700.0" layoutY="489.0" />
+      <Label layoutX="624.0" layoutY="538.0" text="Address:" />
+      <TextField fx:id="fath_address" layoutX="701.0" layoutY="524.0" />
+      <Label layoutX="1349.0" layoutY="364.0" text="First Name:" />
+      <TextField fx:id="moth_fname" layoutX="1431.0" layoutY="359.0" />
+      <Label layoutX="1349.0" layoutY="397.0" text="Last Name:" />
+      <TextField fx:id="moth_lname" layoutX="1431.0" layoutY="392.0" />
+      <Label layoutX="1367.0" layoutY="438.0" prefWidth="32.0" text="DOB:" />
+      <TextField fx:id="moth_dob" layoutX="1431.0" layoutY="424.0" />
+      <Label layoutX="1364.0" layoutY="473.0" text="Email:" />
+      <TextField fx:id="moth_email" layoutX="1432.0" layoutY="459.0" />
+      <Label layoutX="1361.0" layoutY="509.0" text="Phone:" />
+      <TextField fx:id="moth_phone" layoutX="1432.0" layoutY="495.0" />
+      <Label layoutX="1361.0" layoutY="541.0" text="Address:" />
+      <TextField fx:id="moth_address" layoutX="1432.0" layoutY="527.0" />
+      <Button layoutX="984.0" layoutY="584.0" mnemonicParsing="false" onAction="#add_Parent" text="Add" />
+      <Button layoutX="1020.0" layoutY="632.0" mnemonicParsing="false" onAction="#clearParent" text="Clear" />
+      <Button layoutX="1107.0" layoutY="632.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
+      <Button layoutX="1059.0" layoutY="584.0" mnemonicParsing="false" onAction="#update_Parent" text="Update" />
+      <Button layoutX="1146.0" layoutY="584.0" mnemonicParsing="false" onAction="#delete_Parent" text="Delete" />
+      <TableView fx:id="table" layoutX="14.0" layoutY="69.0" prefHeight="200.0" prefWidth="2221.0">
          <columns>
+          <TableColumn fx:id="col_par_id" prefWidth="57.0" text="ID" />
             <TableColumn fx:id="col_fath_fname" prefWidth="115.0" text="First Name" />
             <TableColumn fx:id="col_fath_lname" prefWidth="115.0" text="Last Name" />
             <TableColumn fx:id="col_fath_dob" minWidth="0.0" prefWidth="88.0" text="DOB" />
             <TableColumn fx:id="col_fath_email" prefWidth="198.0" text="Email" />
             <TableColumn fx:id="col_fath_phone" prefWidth="183.0" text="Phone" />
             <TableColumn fx:id="col_fath_address" prefWidth="185.0" text="Address" />
-         </columns>
-      </TableView>
-      <Text layoutX="658.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mother Information" underline="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="661.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Father Information" underline="true">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <TableView fx:id="table3" layoutX="328.0" layoutY="535.0" prefHeight="200.0" prefWidth="885.0">
-         <columns>
             <TableColumn fx:id="col_moth_fname" prefWidth="115.0" text="First Name" />
             <TableColumn fx:id="col_moth_lname" prefWidth="115.0" text="Last Name" />
             <TableColumn fx:id="col_moth_dob" minWidth="0.0" prefWidth="88.0" text="DOB" />
             <TableColumn fx:id="col_moth_email" prefWidth="198.0" text="Email" />
             <TableColumn fx:id="col_moth_phone" prefWidth="183.0" text="Phone" />
             <TableColumn fx:id="col_moth_address" prefWidth="185.0" text="Address" />
+          <TableColumn fx:id="col_par_marital" prefWidth="146.0" text="Marital Status" />
+            <TableColumn fx:id="col_amt_stu" prefWidth="140.0" text="Amount of Student(s)" />
+            <TableColumn fx:id="col_date_mod" prefWidth="108.0" text="Date Modified" />
          </columns>
       </TableView>
-      <Label layoutX="365.0" layoutY="63.0" text="ID:" />
-      <TextField fx:id="par_id" layoutX="453.0" layoutY="58.0" />
-      <Label layoutX="328.0" layoutY="113.0" text="Marital Status:" />
-      <TextField fx:id="par_marital" layoutX="452.0" layoutY="108.0" />
-      <Label layoutX="304.0" layoutY="163.0" text="Amount of Student(s):" />
-      <TextField fx:id="amt_stu" layoutX="452.0" layoutY="158.0" />
-      <Label layoutX="29.0" layoutY="76.0" text="First Name:" />
-      <TextField fx:id="fath_fname" layoutX="110.0" layoutY="71.0" />
-      <Label layoutX="29.0" layoutY="113.0" text="Last Name:" />
-      <TextField fx:id="fath_lname" layoutX="110.0" layoutY="108.0" />
-      <Label layoutX="47.0" layoutY="158.0" prefHeight="17.0" prefWidth="39.0" text="DOB:" />
-      <TextField fx:id="fath_dob" layoutX="109.0" layoutY="144.0" />
-      <Label layoutX="42.0" layoutY="193.0" text="Email:" />
-      <TextField fx:id="fath_email" layoutX="110.0" layoutY="179.0" />
-      <Label layoutX="39.0" layoutY="228.0" text="Phone:" />
-      <TextField fx:id="fath_phone" layoutX="109.0" layoutY="214.0" />
-      <Label layoutX="33.0" layoutY="263.0" text="Address:" />
-      <TextField fx:id="fath_address" layoutX="110.0" layoutY="249.0" />
-      <Label layoutX="27.0" layoutY="367.0" text="First Name:" />
-      <TextField fx:id="moth_fname" layoutX="109.0" layoutY="362.0" />
-      <Label layoutX="27.0" layoutY="400.0" text="Last Name:" />
-      <TextField fx:id="moth_lname" layoutX="109.0" layoutY="395.0" />
-      <Label layoutX="45.0" layoutY="441.0" prefWidth="32.0" text="DOB:" />
-      <TextField fx:id="moth_dob" layoutX="109.0" layoutY="427.0" />
-      <Label layoutX="42.0" layoutY="476.0" text="Email:" />
-      <TextField fx:id="moth_email" layoutX="110.0" layoutY="462.0" />
-      <Label layoutX="39.0" layoutY="512.0" text="Phone:" />
-      <TextField fx:id="moth_phone" layoutX="110.0" layoutY="498.0" />
-      <Label layoutX="39.0" layoutY="544.0" text="Address:" />
-      <TextField fx:id="moth_address" layoutX="110.0" layoutY="530.0" />
-      <Label layoutX="109.0" layoutY="31.0" text="Father" underline="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="110.0" layoutY="320.0" text="Mother" underline="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="55.0" layoutY="622.0" mnemonicParsing="false" onAction="#add_Parent" text="Add" />
-      <Button layoutX="91.0" layoutY="670.0" mnemonicParsing="false" onAction="#clearParent" text="Clear" />
-      <Button layoutX="178.0" layoutY="670.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
-      <Button layoutX="130.0" layoutY="622.0" mnemonicParsing="false" onAction="#update_Parent" text="Update" />
-      <Button layoutX="217.0" layoutY="622.0" mnemonicParsing="false" onAction="#delete_Parent" text="Delete" />
    </children>
 </AnchorPane>
