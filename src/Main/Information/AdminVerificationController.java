@@ -44,10 +44,38 @@ public class AdminVerificationController implements Initializable {
     private TextField adm_verify;
 
 
-    ObservableList<AdminVerification> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<AdminVerification> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            AdminVerification stu = newval;
+            if (stu != null) {
+                madm_id.setText(stu.getMAdm_ID());
+                adm_id.setText(stu.getAdm_ID());
+                adm_verify.setText(stu.getAdm_Verify());
+
+
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setAdminVerTable();
+        displayDatabase();
+
+    }
+
+    private void setAdminVerTable() {
+        col_madm_id.setCellValueFactory(new PropertyValueFactory<>("MAdm_ID"));
+        col_adm_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
+        col_adm_verify.setCellValueFactory(new PropertyValueFactory<>("Adm_Verify"));
+    }
+
+
+    private void displayDatabase(){
+
+        ObservableList<AdminVerification> adminverInfo = FXCollections.observableArrayList();
 
         try {
 
@@ -57,7 +85,7 @@ public class AdminVerificationController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new AdminVerification(rs.getString("MAdm_ID"),rs.getString("Adm_ID"), rs.getString("Adm_Verify")));
+                adminverInfo.add(new AdminVerification(rs.getString("MAdm_ID"),rs.getString("Adm_ID"), rs.getString("Adm_Verify")));
 
             }
 
@@ -65,11 +93,7 @@ public class AdminVerificationController implements Initializable {
             Logger.getLogger(AdminVerificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_madm_id.setCellValueFactory(new PropertyValueFactory<>("MAdm_ID"));
-        col_adm_id.setCellValueFactory(new PropertyValueFactory<>("Adm_ID"));
-        col_adm_verify.setCellValueFactory(new PropertyValueFactory<>("Adm_Verify"));
-
-        table.setItems(oblist);
+        table.setItems(adminverInfo);
 
     }
 
@@ -85,11 +109,20 @@ public class AdminVerificationController implements Initializable {
             stmt.setString(2, this.adm_id.getText());
             stmt.setString(3, this.adm_verify.getText());
             stmt.execute();
+            setAdminVerTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(AdminVerificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            madm_id.setText("");
+            adm_id.setText("");
+            adm_verify.setText("");
         }
 
     }
@@ -105,12 +138,19 @@ public class AdminVerificationController implements Initializable {
             stmtstu.setString(1, this.adm_id.getText());
 
             stmtstu.execute();
+            setAdminVerTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(AdminVerificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            madm_id.setText("");
+            adm_id.setText("");
+            adm_verify.setText("");
         }
 
     }
@@ -128,6 +168,10 @@ public class AdminVerificationController implements Initializable {
             stmt.setString(3, this.adm_verify.getText());
 
             stmt.execute();
+            setAdminVerTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -136,6 +180,19 @@ public class AdminVerificationController implements Initializable {
             Logger.getLogger(AdminVerificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        finally{
+            madm_id.setText("");
+            adm_id.setText("");
+            adm_verify.setText("");
+        }
+
+    }
+
+    @FXML
+    private void clear_AdminVerification(ActionEvent actionEvent) {
+        madm_id.setText("");
+        adm_id.setText("");
+        adm_verify.setText("");
     }
 
     @SuppressWarnings("Duplicates")
@@ -147,4 +204,5 @@ public class AdminVerificationController implements Initializable {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
 }
