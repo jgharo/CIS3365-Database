@@ -32,7 +32,7 @@ public class ParentTransactionFormController implements Initializable {
     @FXML
     private TableColumn<ParentTransactionForm,String> col_trans_par_id;
     @FXML
-    private TableColumn<ParentTransactionForm, String> col_par_id;
+    private TableColumn<ParentTransactionForm, String> col_preg_id;
     @FXML
     private TableColumn<ParentTransactionForm, String> col_trans_amt;
     @FXML
@@ -43,7 +43,7 @@ public class ParentTransactionFormController implements Initializable {
     @FXML
     private TextField trans_par_id;
     @FXML
-    private TextField par_id;
+    private TextField preg_id;
     @FXML
     private TextField trans_amt;
     @FXML
@@ -52,12 +52,44 @@ public class ParentTransactionFormController implements Initializable {
     private TextField due_date;
 
 
-    ObservableList<ParentTransactionForm> oblist = FXCollections.observableArrayList();
-
+    Scene returnScene;
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<ParentTransactionForm> observableList = FXCollections.observableArrayList();
+        table.setItems(observableList);
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
+            ParentTransactionForm stu = newval;
+            if (stu != null) {
+                trans_par_id.setText(stu.getTrans_Par_ID());
+                preg_id.setText(stu.getPReg_ID());
+                trans_amt.setText(stu.getTrans_Amt());
+                trans_remain.setText(stu.getTrans_Remain());
+                due_date.setText(stu.getDue_Date());
 
-        try {
+            }
+        });
+        table.getSelectionModel().clearSelection();
+
+        setParentTransTable();
+        displayDatabase();
+
+    }
+
+    private void setParentTransTable(){
+
+        col_trans_par_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Par_ID"));
+        col_preg_id.setCellValueFactory(new PropertyValueFactory<>("PReg_ID"));
+        col_trans_amt.setCellValueFactory(new PropertyValueFactory<>("Trans_Amt"));
+        col_trans_remain.setCellValueFactory(new PropertyValueFactory<>("Trans_Remain"));
+        col_due_date.setCellValueFactory(new PropertyValueFactory<>("Due_Date"));
+    }
+
+    private void displayDatabase(){
+
+
+            ObservableList<ParentTransactionForm> parenttransInfo = FXCollections.observableArrayList();
+
+            try{
 
             Connection con = DBconnect.getConnection();
 
@@ -65,7 +97,7 @@ public class ParentTransactionFormController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()){
-                oblist.add(new ParentTransactionForm(rs.getString("Trans_Par_ID"),rs.getString("Par_ID"), rs.getString("Trans_Amt"), rs.getString("Trans_Remain"),
+                parenttransInfo.add(new ParentTransactionForm(rs.getString("Trans_Par_ID"),rs.getString("PReg_ID"), rs.getString("Trans_Amt"), rs.getString("Trans_Remain"),
                         rs.getString("Due_Date")));
 
             }
@@ -74,15 +106,14 @@ public class ParentTransactionFormController implements Initializable {
             Logger.getLogger(ParentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        col_trans_par_id.setCellValueFactory(new PropertyValueFactory<>("Trans_Par_ID"));
-        col_par_id.setCellValueFactory(new PropertyValueFactory<>("Par_ID"));
-        col_trans_amt.setCellValueFactory(new PropertyValueFactory<>("Trans_Amt"));
-        col_trans_remain.setCellValueFactory(new PropertyValueFactory<>("Trans_Remain"));
-        col_due_date.setCellValueFactory(new PropertyValueFactory<>("Due_Date"));
 
-        table.setItems(oblist);
+
+        table.setItems(parenttransInfo);
 
     }
+
+
+
 
     @FXML
     private void add_ParentTransactionForm(ActionEvent event){
@@ -92,16 +123,27 @@ public class ParentTransactionFormController implements Initializable {
 
             CallableStatement stmt = con.prepareCall("{CALL par_transaction_insert(?,?,?,?)}");
 
-            stmt.setString(1, this.par_id.getText());
+            stmt.setString(1, this.preg_id.getText());
             stmt.setString(2, this.trans_amt.getText());
             stmt.setString(3, this.trans_remain.getText());
             stmt.setString(4, this.due_date.getText());
             stmt.execute();
+            setParentTransTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
         }
         catch (SQLException ex){
             Logger.getLogger(ParentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            trans_par_id.setText("");
+            preg_id.setText("");
+            trans_amt.setText("");
+            trans_remain.setText("");
+            due_date.setText("");
         }
 
     }
@@ -117,12 +159,22 @@ public class ParentTransactionFormController implements Initializable {
             stmt.setString(1, this.trans_par_id.getText());
 
             stmt.execute();
+            setParentTransTable();
+            displayDatabase();
             con.close();
 
 
         }
         catch (SQLException ex){
             Logger.getLogger(ParentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+
+            trans_par_id.setText("");
+            preg_id.setText("");
+            trans_amt.setText("");
+            trans_remain.setText("");
+            due_date.setText("");
         }
 
     }
@@ -136,12 +188,16 @@ public class ParentTransactionFormController implements Initializable {
             CallableStatement stmt = con.prepareCall("{CALL par_transaction_update(?,?,?,?,?)}");
 
             stmt.setString(1, this.trans_par_id.getText());
-            stmt.setString(2, this.par_id.getText());
+            stmt.setString(2, this.preg_id.getText());
             stmt.setString(3, this.trans_amt.getText());
             stmt.setString(4, this.trans_remain.getText());
             stmt.setString(5, this.due_date.getText());
 
             stmt.execute();
+            setParentTransTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -149,7 +205,24 @@ public class ParentTransactionFormController implements Initializable {
         catch (SQLException ex){
             Logger.getLogger(ParentTransactionFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
 
+            trans_par_id.setText("");
+            preg_id.setText("");
+            trans_amt.setText("");
+            trans_remain.setText("");
+            due_date.setText("");
+        }
+
+
+    }
+    @FXML
+    private void clear_ParentTransactionForm(ActionEvent actionEvent) {
+        trans_par_id.setText("");
+        preg_id.setText("");
+        trans_amt.setText("");
+        trans_remain.setText("");
+        due_date.setText("");
     }
 
     @SuppressWarnings("Duplicates")

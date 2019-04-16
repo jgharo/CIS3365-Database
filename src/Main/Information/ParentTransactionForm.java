@@ -2,11 +2,11 @@ package Information;
 
 public class ParentTransactionForm {
 
-    String Trans_Par_ID,Par_ID, Trans_Amt, Trans_Remain, Due_Date;
+    String Trans_Par_ID,PReg_ID, Trans_Amt, Trans_Remain, Due_Date;
 
-    public ParentTransactionForm(String Trans_Par_ID, String Par_ID, String Trans_Amt, String Trans_Remain, String Due_Date){
+    public ParentTransactionForm(String Trans_Par_ID, String PReg_ID, String Trans_Amt, String Trans_Remain, String Due_Date){
         this.Trans_Par_ID=Trans_Par_ID;
-        this.Par_ID=Par_ID;
+        this.PReg_ID=PReg_ID;
         this.Trans_Amt=Trans_Amt;
         this.Trans_Remain=Trans_Remain;
 
@@ -20,12 +20,12 @@ public class ParentTransactionForm {
         Trans_Par_ID = trans_Par_ID;
     }
 
-    public String getPar_ID() {
-        return Par_ID;
+    public String getPReg_ID() {
+        return PReg_ID;
     }
 
-    public void setPar_ID(String par_ID) {
-        Par_ID = par_ID;
+    public void setPReg_ID(String preg_ID) {
+        PReg_ID = preg_ID;
     }
 
     public String getTrans_Amt() {
