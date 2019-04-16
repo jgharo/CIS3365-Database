@@ -42,7 +42,7 @@
         <Button fx:id="addButton" layoutX="305.0" layoutY="585.0" mnemonicParsing="false" onAction="#addMasterAdmin" prefHeight="25.0" prefWidth="55.0" text="Add" />
         <Button fx:id="updateButton" layoutX="396.0" layoutY="585.0" mnemonicParsing="false" onAction="#updateMasterAdmin" text="Update" />
         <Button fx:id="deleteButton" layoutX="487.0" layoutY="585.0" mnemonicParsing="false" onAction="#deleteMasterAdmin" prefHeight="25.0" prefWidth="56.0" text="Delete" />
-        <TableView fx:id="adminTable" layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
+        <TableView fx:id="madminTable" layoutX="25.0" layoutY="76.0" prefHeight="396.0" prefWidth="959.0">
             <columns>
                 <TableColumn fx:id="idCol" prefWidth="59.0" text="ID" />
                 <TableColumn fx:id="firstCol" prefWidth="167.0" text="First Name" />

@@ -136,11 +136,12 @@ public class MasterAdminController implements Initializable {
             Connection con = DBconnect.getConnection();
             CallableStatement stmtAdmin = con.prepareCall("{CALL master_admin_update(?,?,?,?,?)}");
 
-            stmtAdmin.setString(1, firstText.getText());
-            stmtAdmin.setString(2, lastText.getText());
-            stmtAdmin.setString(3, emailText.getText());
-            stmtAdmin.setString(4, phoneText.getText());
-            stmtAdmin.setString(5, id.getText());
+            stmtAdmin.setString(1, id.getText());
+            stmtAdmin.setString(2, firstText.getText());
+            stmtAdmin.setString(3, lastText.getText());
+            stmtAdmin.setString(4, emailText.getText());
+            stmtAdmin.setString(5, phoneText.getText());
+
 
             stmtAdmin.executeUpdate();
             setMAdminTable();
