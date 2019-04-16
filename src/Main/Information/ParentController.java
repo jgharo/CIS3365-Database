@@ -1,4 +1,4 @@
-/**package Information;
+package Information;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,43 +28,43 @@ import java.util.logging.Logger;
 public class ParentController implements Initializable {
 
     @FXML
-    private TableView<Parent> table;
+    private TableView<Parents> table;
     @FXML
-    private TableColumn<Parent, String> col_par_id;
+    private TableColumn<Parents, String> col_par_id;
     @FXML
-    private TableColumn<Parent , String> col_fath_fname;
+    private TableColumn<Parents , String> col_fath_fname;
     @FXML
-    private TableColumn<Parent , String> col_fath_lname;
+    private TableColumn<Parents , String> col_fath_lname;
     @FXML
-    private TableColumn<Parent , String> col_fath_dob;
+    private TableColumn<Parents , String> col_fath_dob;
     @FXML
-    private TableColumn<Parent , String> col_fath_email;
+    private TableColumn<Parents , String> col_fath_email;
     @FXML
-    private TableColumn<Parent , String> col_fath_phone;
+    private TableColumn<Parents , String> col_fath_phone;
     @FXML
-    private TableColumn<Parent , String> col_fath_address;
+    private TableColumn<Parents , String> col_fath_address;
     @FXML
-    private TableColumn<Parent , String> col_fath_lang;
+    private TableColumn<Parents , String> col_fath_lang;
     @FXML
-    private TableColumn<Parent , String> col_moth_fname;
+    private TableColumn<Parents , String> col_moth_fname;
     @FXML
-    private TableColumn<Parent , String> col_moth_lname;
+    private TableColumn<Parents , String> col_moth_lname;
     @FXML
-    private TableColumn<Parent , String> col_moth_dob;
+    private TableColumn<Parents , String> col_moth_dob;
     @FXML
-    private TableColumn<Parent , String> col_moth_email;
+    private TableColumn<Parents , String> col_moth_email;
     @FXML
-    private TableColumn<Parent , String> col_moth_phone;
+    private TableColumn<Parents , String> col_moth_phone;
     @FXML
-    private TableColumn<Parent , String> col_moth_address;
+    private TableColumn<Parents , String> col_moth_address;
     @FXML
-    private TableColumn<Parent, String> col_moth_lang;
+    private TableColumn<Parents, String> col_moth_lang;
     @FXML
-    private TableColumn<Parent, String> col_par_marital;
+    private TableColumn<Parents, String> col_par_marital;
     @FXML
-    private TableColumn<Parent, String> col_amt_stu;
+    private TableColumn<Parents, String> col_amt_stu;
     @FXML
-    private TableColumn<Parent, String> col_date_mod;
+    private TableColumn<Parents, String> col_date_mod;
 
 
     @FXML
@@ -104,24 +104,26 @@ public class ParentController implements Initializable {
 
     Scene returnScene;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources){
 
-        ObservableList<Parent> observableList = FXCollections.observableArrayList();
-
+        ObservableList<Parents> observableList = FXCollections.observableArrayList();
         table.setItems(observableList);
-        table.getSelectionModel().selectedItemProperty().addListener((observable, oldval, newval) ->  {
+        table.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) ->  {
 
-            Parent parent = newval;
+            Parents parent = newval;
             if (parent != null) {
                 par_id.setText(parent.getPar_ID());
+                par_marital.setText(parent.getPar_Marital());
+                amt_stu.setText(parent.getAmt_Stu());
+
                 fath_fname.setText(parent.getFath_FName());
                 fath_lname.setText(parent.getFath_LName());
                 fath_dob.setText(parent.getFath_DOB());
                 fath_email.setText(parent.getFath_Email());
                 fath_phone.setText(parent.getFath_Phone());
                 fath_address.setText(parent.getFath_Address());
+                fath_lang.setText(parent.getFath_Lang());
 
                 moth_fname.setText(parent.getMoth_FName());
                 moth_lname.setText(parent.getMoth_LName());
@@ -129,11 +131,7 @@ public class ParentController implements Initializable {
                 moth_email.setText(parent.getMoth_Email());
                 moth_phone.setText(parent.getMoth_Phone());
                 moth_address.setText(parent.getMoth_Address());
-
-                par_marital.setText(parent.getPar_Marital());
-                amt_stu.setText(parent.getAmt_Stu());
-
-
+                moth_lang.setText(parent.getMoth_Lang());
             }
         });
         table.getSelectionModel().clearSelection();
@@ -163,13 +161,11 @@ public class ParentController implements Initializable {
 
         col_par_marital.setCellValueFactory(new PropertyValueFactory<>("Par_Marital"));
         col_amt_stu.setCellValueFactory(new PropertyValueFactory<>("Amt_Stu"));
-
         col_date_mod.setCellValueFactory(new PropertyValueFactory<>("Date_Mod"));
     }
 
-
     private void displayDatabase(){
-        ObservableList<Parent> parentInfo= FXCollections.observableArrayList();
+        ObservableList<Parents> parentInfo= FXCollections.observableArrayList();
 
         try{
             Connection con = DBconnect.getConnection();
@@ -178,12 +174,10 @@ public class ParentController implements Initializable {
 
             ResultSet rs= stmt.executeQuery();
             while (rs.next()) {
-                parentInfo.add(new Parent(rs.getString("Par_ID"),
-                        rs.getString("Fath_FName"), rs.getString("Fath_LName"), rs.getString("Fath_DOB"), rs.getString("Fath_Email"), rs.getString("Fath_Phone"),
-                        rs.getString("Fath_Address"), rs.getString("Fath_Lang"), rs.getString("Moth_FName"), rs.getString("Moth_LName"), rs.getString("Moth_DOB"), rs.getString("Moth_Email"), rs.getString("Moth_Phone"),
-                        rs.getString("Moth_Address"), rs.getString("Moth_Lang"), rs.getString("Par_Marital"), rs.getString("Amt_Stu"), rs.getString("Date_Mod")));
+                parentInfo.add(new Parents(rs.getString("par_ID"),rs.getString("fath_FName"), rs.getString("fath_LName"), rs.getString("fath_DOB"), rs.getString("fath_Email"), rs.getString("fath_Phone"),
+                        rs.getString("fath_Address"), rs.getString("fath_Lang"), rs.getString("moth_FName"), rs.getString("moth_LName"), rs.getString("moth_DOB"), rs.getString("moth_Email"), rs.getString("moth_Phone"),
+                        rs.getString("moth_Address"), rs.getString("moth_Lang"), rs.getString("par_Marital"), rs.getString("amt_Stu"), rs.getString("date_Mod")));
             }
-
 
         } catch (SQLException ex) {
             Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,12 +185,7 @@ public class ParentController implements Initializable {
         }
 
         table.setItems(parentInfo);
-
-
     }
-
-
-
 
     @FXML
     private void add_Parent(ActionEvent event){
@@ -204,25 +193,25 @@ public class ParentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL student_insert(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL parent_insert(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 
-            stmt.setString(1, this.fath_fname.getText());
-            stmt.setString(2, this.fath_lname.getText());
-            stmt.setString(3, this.fath_dob.getText());
-            stmt.setString(4, this.fath_email.getText());
-            stmt.setString(5, this.fath_phone.getText());
-            stmt.setString(6, this.fath_address.getText());
-            stmt.setString(7, this.fath_lang.getText());
+            stmt.setString(1, fath_fname.getText());
+            stmt.setString(2, fath_lname.getText());
+            stmt.setString(3, fath_dob.getText());
+            stmt.setString(4, fath_address.getText());
+            stmt.setString(5, fath_email.getText());
+            stmt.setString(6, fath_phone.getText());
+            stmt.setString(7, fath_lang.getText());
 
-            stmt.setString(8, this.moth_fname.getText());
-            stmt.setString(9, this.moth_lname.getText());
-            stmt.setString(10, this.moth_dob.getText());
-            stmt.setString(11, this.moth_email.getText());
-            stmt.setString(12, this.moth_phone.getText());
-            stmt.setString(13, this.moth_address.getText());
-            stmt.setString(14, this.moth_lang.getText());
-            stmt.setString(15, this.par_marital.getText());
-            stmt.setString(16, this.amt_stu.getText());
+            stmt.setString(8, moth_fname.getText());
+            stmt.setString(9, moth_lname.getText());
+            stmt.setString(10, moth_dob.getText());
+            stmt.setString(11, moth_address.getText());
+            stmt.setString(12, moth_email.getText());
+            stmt.setString(13, moth_phone.getText());
+            stmt.setString(14, moth_lang.getText());
+            stmt.setString(15, par_marital.getText());
+            stmt.setString(16, amt_stu.getText());
 
             stmt.execute();
             setParentTable();
@@ -231,28 +220,26 @@ public class ParentController implements Initializable {
             table.refresh();
             con.close();
 
-
         }
         catch (SQLException ex){
             Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
-
-            this.fath_fname.setText("");
-            this.fath_lname.setText("");
-            this.fath_dob.setText("");
-            this.fath_email.setText("");
-            this.fath_phone.setText("");
-            this.fath_address.setText("");
-            this.fath_lang.setText("");
-            this.moth_fname.setText("");
-            this.moth_lname.setText("");
-            this.moth_dob.setText("");
-            this.moth_email.setText("");
-            this.moth_phone.setText("");
-            this.moth_address.setText("");
-            this.moth_lang.setText("");
-            this.par_marital.setText("");
-            this.amt_stu.setText("");
+            fath_fname.setText("");
+            fath_lname.setText("");
+            fath_dob.setText("");
+            fath_email.setText("");
+            fath_phone.setText("");
+            fath_address.setText("");
+            fath_lang.setText("");
+            moth_fname.setText("");
+            moth_lname.setText("");
+            moth_dob.setText("");
+            moth_email.setText("");
+            moth_phone.setText("");
+            moth_address.setText("");
+            moth_lang.setText("");
+            par_marital.setText("");
+            amt_stu.setText("");
 
         }
 
@@ -264,11 +251,11 @@ public class ParentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmtstu = con.prepareCall("{CALL parent_delete(?)}");
+            CallableStatement stmt = con.prepareCall("{CALL parent_delete(?)}");
 
-            stmtstu.setString(1, this.par_id.getText());
+            stmt.setString(1, par_id.getText());
 
-            stmtstu.execute();
+            stmt.execute();
             setParentTable();
             displayDatabase();
             con.close();
@@ -289,30 +276,33 @@ public class ParentController implements Initializable {
         try {
             Connection con = DBconnect.getConnection();
 
-            CallableStatement stmt = con.prepareCall("{CALL parent_update(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            CallableStatement stmt = con.prepareCall("{CALL parent_update(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 
-            stmt.setString(1, this.par_id.getText());
-            stmt.setString(2, this.fath_fname.getText());
-            stmt.setString(3, this.fath_lname.getText());
-            stmt.setString(4, this.fath_dob.getText());
-            stmt.setString(5, this.fath_email.getText());
-            stmt.setString(6, this.fath_phone.getText());
-            stmt.setString(7, this.fath_address.getText());
-            stmt.setString(8, this.fath_lang.getText());
+           stmt.setString(1, fath_fname.getText());
+            stmt.setString(2, fath_lname.getText());
+            stmt.setString(3, fath_dob.getText());
+            stmt.setString(4, fath_email.getText());
+            stmt.setString(5, fath_phone.getText());
+            stmt.setString(6, fath_address.getText());
+            stmt.setString(7, fath_lang.getText());
 
-            stmt.setString(9, this.moth_fname.getText());
-            stmt.setString(10, this.moth_lname.getText());
-            stmt.setString(11, this.moth_dob.getText());
-            stmt.setString(12, this.moth_email.getText());
-            stmt.setString(13, this.moth_phone.getText());
-            stmt.setString(14, this.moth_address.getText());
-            stmt.setString(15, this.moth_lang.getText());
+            stmt.setString(8, moth_fname.getText());
+            stmt.setString(9, moth_lname.getText());
+            stmt.setString(10, moth_dob.getText());
+            stmt.setString(11, moth_email.getText());
+            stmt.setString(12, moth_phone.getText());
+            stmt.setString(13, moth_address.getText());
+            stmt.setString(14, moth_lang.getText());
 
-            stmt.setString(16, this.par_marital.getText());
-            stmt.setString(17, this.amt_stu.getText());
+            stmt.setString(15, par_marital.getText());
+            stmt.setString(16, par_id.getText());
 
 
-            stmt.execute();
+            stmt.executeUpdate();
+            setParentTable();
+            displayDatabase();
+            table.getSelectionModel().clearSelection();
+            table.refresh();
             con.close();
 
 
@@ -321,46 +311,46 @@ public class ParentController implements Initializable {
             Logger.getLogger(ParentController.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
 
-            this.par_id.setText("");
-            this.fath_fname.setText("");
-            this.fath_lname.setText("");
-            this.fath_dob.setText("");
-            this.fath_email.setText("");
-            this.fath_phone.setText("");
-            this.fath_address.setText("");
-            this.fath_lang.setText("");
-            this.moth_fname.setText("");
-            this.moth_lname.setText("");
-            this.moth_dob.setText("");
-            this.moth_email.setText("");
-            this.moth_phone.setText("");
-            this.moth_address.setText("");
-            this.moth_lang.setText("");
-            this.par_marital.setText("");
-            this.amt_stu.setText("");
+            par_id.setText("");
+            fath_fname.setText("");
+            fath_lname.setText("");
+            fath_dob.setText("");
+            fath_email.setText("");
+            fath_phone.setText("");
+            fath_address.setText("");
+            fath_lang.setText("");
+            moth_fname.setText("");
+            moth_lname.setText("");
+            moth_dob.setText("");
+            moth_email.setText("");
+            moth_phone.setText("");
+            moth_address.setText("");
+            moth_lang.setText("");
+            par_marital.setText("");
+            amt_stu.setText("");
         }
 
     }
 
     public void clearParent(ActionEvent actionEvent){
 
-        this.par_id.setText("");
-        this.fath_fname.setText("");
-        this.fath_lname.setText("");
-        this.fath_dob.setText("");
-        this.fath_email.setText("");
-        this.fath_phone.setText("");
-        this.fath_address.setText("");
-        this.fath_lang.setText("");
-        this.moth_fname.setText("");
-        this.moth_lname.setText("");
-        this.moth_dob.setText("");
-        this.moth_email.setText("");
-        this.moth_phone.setText("");
-        this.moth_address.setText("");
-        this.moth_lang.setText("");
-        this.par_marital.setText("");
-        this.amt_stu.setText("");
+        par_id.setText("");
+        fath_fname.setText("");
+        fath_lname.setText("");
+        fath_dob.setText("");
+        fath_email.setText("");
+        fath_phone.setText("");
+        fath_address.setText("");
+        fath_lang.setText("");
+        moth_fname.setText("");
+        moth_lname.setText("");
+        moth_dob.setText("");
+        moth_email.setText("");
+        moth_phone.setText("");
+        moth_address.setText("");
+        moth_lang.setText("");
+        par_marital.setText("");
+        amt_stu.setText("");
     }
 
     @SuppressWarnings("Duplicates")
@@ -374,4 +364,4 @@ public class ParentController implements Initializable {
     }
 
 
-}*/
+}

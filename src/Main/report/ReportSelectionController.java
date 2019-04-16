@@ -30,7 +30,7 @@ public class ReportSelectionController implements Initializable
             "Adm User w/ VerStat RegDate", "Stu w/ RICA Class Room", "Class w/ Room Lang Teach", "Stu w/ ESP Class",
             "Teach User w/ VerStat Reg Date", "Teach VerStat w/ Adm", "Stu w/ Conf Class Room", "Stu w/ Sac Not Enroll",
             "Contact Stu (18) RegVer Not Paid", "Stu (18) Trans w/ Date Amt RegID", "Stu w/ VerStat Adm", "ENG Teach w/ Class",
-            "Contact Teach w/ Class Course", "Contact Stu w/ Parent Class", "ESP Teach w/ Class", "ENG Class w/ Room Lang Course",
+            "Contact Teach w/ Class Course", "Contact Stu w/ Parents Class", "ESP Teach w/ Class", "ENG Class w/ Room Lang Course",
             "Par Not Paid w/ Mar Sep", "Stu w/ LilFriends Class Room", "Par Not Paid w/ Mar Divorced", "Par Not Paid w/ Mar Widow",
             "Par Not Paid w/ Mar Married"};
 

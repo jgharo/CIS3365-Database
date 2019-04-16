@@ -9,7 +9,7 @@ public class TestTable extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/Information/Master Admin Account.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Information/Parents.fxml"));
         primaryStage.setTitle("St. Philip of Jesus Management System");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
