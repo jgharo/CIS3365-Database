@@ -7,6 +7,7 @@ public class repo_garcia_3 {
 
     public repo_garcia_3(String Course_Name, String Stu_ID, String Stu_FName, String Stu_LName, String Stu_Phone, String Fath_FName, String Fath_LName,
                      String Moth_FName, String Moth_LName, String Class_Name) {
+        this.Course_Name=Course_Name;
         this.Stu_ID = Stu_ID;
         this.Stu_FName = Stu_FName;
         this.Stu_LName = Stu_LName;

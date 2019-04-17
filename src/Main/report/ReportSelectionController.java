@@ -40,7 +40,7 @@ public class ReportSelectionController implements Initializable
             "repo_deluna_1", "repo_deluna_2", "repo_deluna_3", "repo_deluna_4", "repo_deluna_5", "repo_martin_1", "repo_martin_2",
             "repo_martin_3", "repo_martin_4", "repo_martin_5", "repo_mcallister_1", "repo_mcallister_2", "repo_mcallister_3",
             "repo_mcallister_4", "repo_mcallister_5", "repo_evans_1", "repo_evans_2", "repo_evans_3", "repo_evans_4",
-            "repo_evans_5", "repo_mccormick_1", "repo_mccormick_3", "repo_mccormick_3", "repo_mccormick_4", "repo_mccormick_5"};
+            "repo_evans_5", "repo_mccormick_1", "repo_mccormick_2","repo_mccormick_3", "repo_mccormick_4", "repo_mccormick_5"};
 
     //private String[] fxml = new String[]{
 

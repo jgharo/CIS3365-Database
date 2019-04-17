@@ -11,6 +11,7 @@ public class repo_garcia_4 {
         this.Teach_LName = Teach_LName;
         this.Teach_Phone= Teach_Phone;
         this.Teach_Email= Teach_Email;
+        this.Class_Name=Class_Name;
         this.Course_Name=Course_Name;
 
 
