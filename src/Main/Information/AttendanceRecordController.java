@@ -33,10 +33,10 @@ public class AttendanceRecordController implements Initializable {
     public Button deleteButton;
 
     @FXML
-    public TableView attendanceTable;
-    public TableColumn attendCol;
-    public TableColumn classCol;
-    public TableColumn dateCol;
+    public TableView<Attendance_Record> attendanceTable;
+    public TableColumn<Attendance_Record, String> attendCol;
+    public TableColumn<Attendance_Record, String> classCol;
+    public TableColumn<Attendance_Record, String> dateCol;
 
     @FXML
     public TextField attendanceIDText;
@@ -48,7 +48,7 @@ public class AttendanceRecordController implements Initializable {
         ObservableList<Attendance_Record> observableList = FXCollections.observableArrayList();
         attendanceTable.setItems(observableList);
         attendanceTable.getSelectionModel().selectedItemProperty().addListener((observable,oldval,newval) -> {
-            Attendance_Record attendance_record = (Attendance_Record) newval;
+            Attendance_Record attendance_record = newval;
             if (attendance_record != null) {
                 attendanceIDText.setText(attendance_record.getAtt_ID());
                 classText.setText(attendance_record.getClass_ID());
@@ -76,7 +76,6 @@ public class AttendanceRecordController implements Initializable {
             ResultSet rs = stmtAttend.executeQuery();
             while (rs.next()) {
                 attendInfo.add(new Attendance_Record(rs.getString("Att_ID"), rs.getString("Class_ID"), rs.getString("Att_Date")));
-
 
             }
 
