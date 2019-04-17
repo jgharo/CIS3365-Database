@@ -26,7 +26,7 @@ public class TableSelectionController implements Initializable
             "Admin Account", "Admin Registration", "Attendance Check History", "Attendance Record", "Classes",
             "Class Language", "Classroom", "Courses", "Parents",
             "Parent Registration", "Parent Transactions", "Sacraments", "Students", "Students Sacrament","Student Registration",
-            "Student Transactions", "Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
+            "Student Transactions", "Teacher","Teacher Accounts", "Teacher Enrollment", "Teacher Registration",
             "Parents Transaction History", "Student Transaction History", "Student Verification",
             "Teacher Verification", "Admin Verification"};
 
