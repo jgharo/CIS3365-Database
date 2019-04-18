@@ -58,7 +58,7 @@ public class TableSelectionController implements Initializable
 
     public void reportButtonPushed(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("../report/reportSelection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/report/reportSelection.fxml"));
         Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         primaryStage.setTitle("Report Selection");
         primaryStage.setScene(new Scene(root));
